@@ -1,0 +1,54 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </link>
+    <!-- <script src="./js/sb.min.js"></script> -->
+    <script src="./js/user.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Inventory</h1>
+        <div class="container">
+            <input type="button" value="sign out" onclick="signout()">
+        </div>
+    </main>
+</body>
+<script>
+    ; (function (window) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        const requestOptions = {
+            method: 'GET',
+            headers: headers
+        };
+
+        fetch("/profile", requestOptions).then(response => response.text()).then(result => {
+            console.log('result', result, JSON.parse(result));
+            // const { success, user } = JSON.parse(result);
+            // console.log('{ success, user }', success, user);
+            // if (success == true && user) {
+            //     window.location.href = '/client';
+            // }
+        }).catch(error => console.log('error', error));
+    })(window);
+
+    function signout() {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        const requestOptions = {
+            method: 'GET',
+            // headers: headers
+        };
+
+        fetch("/signout", requestOptions).then(response => response.text()).then(result => {
+            console.log('result', result, JSON.parse(result));
+            const { success, user } = JSON.parse(result);
+            console.log('{ success, user }', success, user);
+            if (success == true && !user) {
+                window.location.href = '/client';
+            }
+        }).catch(error => console.log('error', error));
+    }
+</script>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </link>
+    <script src="./js/sb.min.js"></script>
+
+</head>
+<body>
+    <main>
+        <h1 id="message">Welcome, </h1>
+        <div class="container">
+
+
+            <div id="demo">
+                Objectively fashion corporate information rather than best-of-breed technologies. Credibly supply next-generation metrics through standardized applications. Credibly monetize prospective best practices after proactive paradigms. Synergistically reconceptualize quality initiatives and transparent total linkage. Proactively empower efficient interfaces without interoperable opportunities.
+
+                Progressively aggregate fully researched markets vis-a-vis enterprise-wide total linkage. Quickly syndicate excellent initiatives vis-a-vis vertical collaboration and idea-sharing. Uniquely expedite maintainable applications with premium bandwidth. Competently orchestrate installed base networks rather than equity invested imperatives. Conveniently implement interactive services and open-source bandwidth.
+
+                Assertively conceptualize granular e-markets and innovative testing procedures. Appropriately formulate market positioning human capital after premium metrics. Proactively re-engineer customer directed e-commerce for ubiquitous ideas. Competently envisioneer dynamic materials with backend niche markets. Collaboratively implement out-of-the-box e-business vis-a-vis team driven internal or "organic" sources.
+
+                Seamlessly productize competitive quality vectors after ubiquitous total linkage. Enthusiastically disseminate fully tested catalysts for change without wireless resources. Seamlessly architect principle-centered e-tailers whereas performance based best practices. Competently evolve next-generation solutions and visionary opportunities. Assertively re-engineer focused e-services via cooperative methods of empowerment.
+
+                Rapidiously simplify real-time services with effective e-markets. Efficiently transform client-focused methods of empowerment without strategic data. Energistically benchmark cross functional e-commerce and innovative scenarios. Continually restore front-end processes with scalable platforms. Uniquely maintain interdependent e-business after e-business content.
+
+                Continually fashion open-source communities rather than cross-platform platforms. Assertively whiteboard B2C materials whereas premier strategic theme areas. Seamlessly incubate long-term high-impact paradigms after team building intellectual capital. Energistically initiate bricks-and-clicks interfaces rather than stand-alone users. Quickly innovate cross-media e-tailers and premier catalysts for change.
+
+                Assertively syndicate visionary web services after alternative ideas. Appropriately harness extensible benefits rather than cross-unit markets. Proactively deploy accurate core competencies before collaborative opportunities. Authoritatively deliver magnetic channels before market-driven channels. Synergistically conceptualize an expanded array of meta-services after global value.
+
+                Continually whiteboard prospective potentialities via best-of-breed alignments. Proactively harness frictionless metrics through value-added architectures. Compellingly predominate flexible systems and world-class applications. Progressively create premier interfaces with economically sound quality vectors. Credibly reintermediate resource sucking methodologies for intermandated models.
+
+                Intrinsicly visualize worldwide deliverables vis-a-vis high-quality action items. Authoritatively administrate mission-critical relationships whereas fully tested supply chains. Continually formulate wireless architectures before effective bandwidth. Continually network error-free manufactured products via user-centric "outside the box" thinking. Quickly disintermediate timely collaboration and idea-sharing without ethical platforms.
+
+                Completely drive client-focused users rather than holistic content. Rapidiously incentivize standards compliant communities rather than magnetic imperatives. Objectively architect just in time methods of empowerment before alternative customer service. Assertively engineer world-class paradigms via e-business process improvements. Distinctively productize corporate e-services for clicks-and-mortar vortals.
+
+                Uniquely productize cutting-edge architectures through value-added core competencies. Quickly myocardinate just in time content with covalent services. Appropriately engineer team building collaboration and idea-sharing via granular leadership skills. Uniquely e-enable leveraged leadership skills with state of the art meta-services. Quickly disseminate synergistic core competencies after extensive solutions.
+
+                Objectively deliver leveraged solutions before visionary relationships. Enthusiastically integrate front-end applications without intermandated networks. Phosfluorescently seize intuitive e-business without dynamic models. Seamlessly grow multimedia based information through client-focused results. Proactively incentivize high standards in web-readiness before.
+            </div>
+            <input type="button" value="sign in" onclick="login()">
+        </div>
+    </main>
+</body>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const message = urlParams.get('message');
+    document.getElementById('message').innerText = message;
+</script>
+<script src="./js/index.js"></script>
+<script>
+    function login() {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        // headers.append("Cookie", "language=en-US; this.sid=s%3AlMz9_IqNigWOcbLq6OWOHxmYUxjQdJE5.2Bv5XcB0Boc6lQgXgmosUdwcSJtWN3l3J%2FJLF9qPDUo");
+
+        const body = JSON.stringify({
+            "password": "felimit73",
+            "email": "dragosdoes@gmail.com"
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: body,
+            // redirect: 'follow'
+        };
+
+        fetch("/signin", requestOptions).then(response => response.text()).then(result => {
+            console.log('result', result, JSON.parse(result));
+            const { success, user } = JSON.parse(result);
+            console.log('{ success, user }', success, user);
+            if (success == true && user) {
+                window.location.href = '/client';
+            }
+        }).catch(error => console.log('error', error));
+    }
+</script>
+</html>
