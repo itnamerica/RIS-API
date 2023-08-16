@@ -4,10 +4,7 @@
   "description": "RIS API",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "seed": "node ./prisma/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "prisma generate"
+    "start": "node ./src/index.js"
   },
   "author": "Dragos Stancu",
   "license": "ISC",
