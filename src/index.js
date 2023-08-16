@@ -42,7 +42,7 @@ fastify.register(import('@fastify/rate-limit'), {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 fastify.register(fastifyStatic, {
-	root: path.join(__dirname, 'public'),
+	root: path.join(__dirname, '../public'),
 	serveDotFiles: true,
 	// prefix: '/public/', // optional: default '/'
 	// constraints: { host: 'example.com' } // optional: default {}
