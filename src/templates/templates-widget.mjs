@@ -116,7 +116,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
 const JS_WIDGET = `; (function (window, document) {
   let widget = document.getElementById('widget-ris');
   if(widget!= null){
-    let htmlWidget ='${CSS_RIS} ${HTML_FORM}';
+    let htmlWidget =\`${CSS_RIS} ${HTML_FORM}\`;
     let divWidget = document.createElement('div');
     divWidget.className = 'ris-widget';
     divWidget.innerHTML = htmlWidget;
