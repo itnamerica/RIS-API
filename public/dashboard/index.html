@@ -4,10 +4,11 @@
     </link>
     <!-- <script src="./js/sb.min.js"></script> -->
     <script src="./js/user.js"></script>
+    <script src="./js/petite-vue.js" defer init></script>
 </head>
 <body>
     <main>
-        <h1>Inventory</h1>
+        <h1>Admin Dashboard</h1>
         <div class="container">
             <input type="button" value="sign out" onclick="signout()">
         </div>
@@ -46,7 +47,7 @@
             const { success, user } = JSON.parse(result);
             console.log('{ success, user }', success, user);
             if (success == true && !user) {
-                window.location.href = '/client';
+                window.location.href = '/dashboard';
             }
         }).catch(error => console.log('error', error));
     }

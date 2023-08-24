@@ -49,24 +49,20 @@ const signup = async (request, response) => {
 const signin = async (request, response) => {
     try {
         const { email, password } = request.body;
-        let user = await prisma.user.findUnique({
-            where: {
-                email
-            }
-        });
+        const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+        const ADMIN_PW = process.env.ADMIN_PW;
 
-        if (!user) {
+        const ADMIN_EMAIL_RIS = process.env.ADMIN_EMAIL_RIS;
+        const ADMIN_PW_RIS = process.env.ADMIN_PW_RIS;
+
+        if ((email === ADMIN_EMAIL && password === ADMIN_PW) || (email === ADMIN_EMAIL_RIS && password === ADMIN_PW_RIS)) {
+            let user = { name: 'Admin' };
+            request.session.set('user', user);
+            console.log('user', user);
+            response.status(200).send({ success: true, user });
+        } else {
             return response.status(401).send({ error: 'Invalid credentials' });
         }
-
-        if (!(await comparePassword(password, user.password))) {
-            return response.status(401).send({ error: 'Invalid credentials' });
-        }
-
-        request.session.set('user', user);
-        delete user.password;
-        console.log('user', user);
-        response.status(200).send({ success: true, user });
     } catch (error) {
         console.log('error', error);
         return response.status(500).send({ error: 'Sign in failed!' });

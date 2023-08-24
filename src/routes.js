@@ -1,6 +1,7 @@
 import controllerKey from './controllers/controller-key.js';
 import controllerProfile from './controllers/controller-profile.js';
 import controllerUser from './controllers/controller-user.js';
+import controllerWidget from './controllers/controller-widget.js';
 
 const routesProfile = [
     {
@@ -88,7 +89,16 @@ const routesUser = [
     }
 ];
 
-export default [...routesProfile, ...routesKey, ...routesUser];
+const routesWidget = [
+    {
+        method: 'GET',
+        url: '/api/widget',
+        // preHandler: controllerKey.authenticate,
+        handler: controllerWidget.get,
+    }
+];
+
+export default [...routesProfile, ...routesKey, ...routesUser, ...routesWidget];
 
 // Error: Resource not found on the server
 // Status Code: 404 Not Found
