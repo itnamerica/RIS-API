@@ -1,34 +1,34 @@
 import controllerKey from './controllers/controller-key.js';
-import controllerProfile from './controllers/controller-profile.js';
+import controllerProgram from './controllers/controller-program.js';
 import controllerUser from './controllers/controller-user.js';
 import controllerWidget from './controllers/controller-widget.js';
 
-const routesProfile = [
+const routesProgram = [
     {
         method: 'GET',
-        url: '/api/profiles',
-        preHandler: controllerKey.authenticate,
-        handler: controllerProfile.list
+        url: '/api/programs',
+        // preHandler: controllerKey.authenticate,
+        handler: controllerProgram.list
     },
     {
         method: 'GET',
-        url: '/api/profiles/:id',
-        handler: controllerProfile.get
+        url: '/api/programs/:id',
+        handler: controllerProgram.get
     },
     {
         method: 'POST',
-        url: '/api/profiles',
-        handler: controllerProfile.add
+        url: '/api/programs',
+        handler: controllerProgram.add
     },
     {
         method: 'PUT',
-        url: '/api/profiles/:id',
-        handler: controllerProfile.update
+        url: '/api/programs/:id',
+        handler: controllerProgram.update
     },
     {
         method: 'DELETE',
-        url: '/api/profiles/:id',
-        handler: controllerProfile.remove
+        url: '/api/programs/:id',
+        handler: controllerProgram.remove
     }
 ];
 
@@ -98,7 +98,7 @@ const routesWidget = [
     }
 ];
 
-export default [...routesProfile, ...routesKey, ...routesUser, ...routesWidget];
+export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
 // Error: Resource not found on the server
 // Status Code: 404 Not Found

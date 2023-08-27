@@ -167,6 +167,9 @@ const JS_WIDGET = `; (function (window, document) {
             console.log('ris list',argumentsFilter);
             if (argumentsFilter.address.state&&address.county) {
                 getPrograms(argumentsFilter);
+                fetch("https://api.ridesinsight.org/api/programs").then(response => {
+                    return response.json();
+                }).then(data => console.log(data));
             }
         };
     }else{
