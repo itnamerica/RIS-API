@@ -139,7 +139,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
 
 const JS_WIDGET = `; (function (window, document) {
     const STATES=${STATES};
-    let arguments={address:{},options:{}};
+    let argumentsFilter={address:{},options:{}};
     let widget = document.getElementById('widget-ris');
     if(widget!= null){
         let htmlWidget =\`
@@ -153,20 +153,20 @@ const JS_WIDGET = `; (function (window, document) {
         let selectCounties=document.getElementById('ris-county');
         selectStates.onchange = function(){
             let state=STATES[selectStates.value];
-            arguments.address['state']=state;
+            argumentsFilter.address['state']=state;
             
             for (const county in state) {
                 selectCounties.options[select.options.length] = new Option(county, state[county]);
             }
         };
         selectCounties.onchange = function(){
-            arguments.address['county']=selectCounties.value;
+            argumentsFilter.address['county']=selectCounties.value;
         };
         let buttonListPrograms=document.getElementById('ris-list-programs');
         buttonListPrograms.onclick=function() {
-            console.log('ris list',arguments);
-            if (arguments.address.state&&address.county) {
-                getPrograms(arguments);
+            console.log('ris list',argumentsFilter);
+            if (argumentsFilter.address.state&&address.county) {
+                getPrograms(argumentsFilter);
             }
         };
     }else{
