@@ -156,7 +156,7 @@ const JS_WIDGET = `; (function (window, document) {
             argumentsFilter.address['state']=state;
             
             for (const county in state) {
-                selectCounties.options[select.options.length] = new Option(county, state[county]);
+                selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
             }
         };
         selectCounties.onchange = function(){
