@@ -144,8 +144,7 @@ const JS_WIDGET = `; (function (window, document) {
     if(widget!= null){
         let htmlWidget =\`
             ${CSS_RIS}
-            ${HTML_FORM}
-            ${SCRIPT_FORM}\`;
+            ${HTML_FORM}\`;
         let divWidget = document.createElement('div');
         divWidget.className = 'ris-widget';
         divWidget.innerHTML = htmlWidget;
