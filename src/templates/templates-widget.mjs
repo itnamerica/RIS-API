@@ -62,7 +62,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
 <ul class="columns align-c">
     <li class="pr-3 w-25 m-w-100">
         <div class="block pb-2">
-            <select class="w-100" id="select-state">
+            <select class="w-100" id="ris-state">
                 <option value="">... select state</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -118,40 +118,61 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
             </select>
         </div>
     </li>
-    <li class="pr-3 w-25 m-w-100 disabled" id="block-county">
+    <li class="pr-3 w-25 m-w-100 disabled" id="ris-county">
         <div class="block pb-2">
-            <select class="w-100" id="select-county">
+            <select class="w-100" id="ris-county">
                 <option value="">... select county</option>
             </select>
         </div>
     </li>
-    <li class="pr-3 w-25 m-w-100">
+    <!--<li class="pr-3 w-25 m-w-100">
         <div class="block pb-2">
             <input type="text" id="keyword" name="ris_keyword" placeholder="keyword" class="w-100" value="">
             <h6 class="p-0 m-0">i.e. Wheelchair, Free</h6>
         </div>
-    </li>
+    </li>-->
     <li class="pr-3 w-25 m-w-100">
         <div class="block">
-            <input type="button" value="Search" id="search" class="w-100 button-search">
+            <input type="button" value="Search" id="ris-list-programs" class="w-100 button-search">
         </div>
     </li>
 </ul>
 </form>`;
 
 const JS_WIDGET = `; (function (window, document) {
-  let widget = document.getElementById('widget-ris');
-  if(widget!= null){
-    let htmlWidget =\`
-${CSS_RIS}
-${HTML_FORM}
-${SCRIPT_FORM}\`;
-    let divWidget = document.createElement('div');
-    divWidget.className = 'ris-widget';
-    divWidget.innerHTML = htmlWidget;
-    widget.after(divWidget);
-  }else{
+    let arguments={address:{},options};
+    let widget = document.getElementById('widget-ris');
+    if(widget!= null){
+        let htmlWidget =\`
+            ${CSS_RIS}
+            ${HTML_FORM}
+            ${SCRIPT_FORM}\`;
+        let divWidget = document.createElement('div');
+        divWidget.className = 'ris-widget';
+        divWidget.innerHTML = htmlWidget;
+        widget.after(divWidget);
+        let selectStates=document.getElementById('ris-state');
+        let selectCounties=document.getElementById('ris-county');
+        selectStates.onchange = function(){
+            let state=STATES[selectStates.value];
+            arguments.address.state=state;
+            
+            for (const county in state) {
+                selectCounties.options[select.options.length] = new Option(county, state[county]);
+            }
+        };
+        selectCounties.onchange = function(){
+            arguments.address.county=selectCounties.value;
+        };
+        let buttonListPrograms=document.getElementById('ris-list-programs');
+        buttonListPrograms.onclick=function() {
+            console.log('ris list',arguments);
+            if (arguments.address.state&&address.county) {
+                getPrograms(arguments);
+            }
+        });
+    }else{
     console.log('cannot load RIS widget');
-  }
+    }
 })(window, document);`;
 export default { JS_WIDGET };
