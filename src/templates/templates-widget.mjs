@@ -170,7 +170,7 @@ const JS_WIDGET = `; (function (window, document) {
             if (arguments.address.state&&address.county) {
                 getPrograms(arguments);
             }
-        });
+        };
     }else{
     console.log('cannot load RIS widget');
     }
