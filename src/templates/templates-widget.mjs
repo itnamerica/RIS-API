@@ -153,14 +153,14 @@ const JS_WIDGET = `; (function (window, document) {
         let selectCounties=document.getElementById('ris-county');
         selectStates.onchange = function(){
             let state=STATES[selectStates.value];
-            arguments.address.state=state;
+            arguments.address['state']=state;
             
             for (const county in state) {
                 selectCounties.options[select.options.length] = new Option(county, state[county]);
             }
         };
         selectCounties.onchange = function(){
-            arguments.address.county=selectCounties.value;
+            arguments.address['county']=selectCounties.value;
         };
         let buttonListPrograms=document.getElementById('ris-list-programs');
         buttonListPrograms.onclick=function() {
