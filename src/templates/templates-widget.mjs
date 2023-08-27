@@ -154,7 +154,9 @@ const JS_WIDGET = `; (function (window, document) {
         selectStates.onchange = function(){
             let state=STATES[selectStates.value];
             argumentsFilter.address['state']=state;
-            
+            //clear options
+            selectCounties.options.forEach(option => option.remove());
+            selectCounties.options[selectCounties.options.length] = new Option('... select county', '');
             for (const county in state) {
                 selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
             }
