@@ -6,7 +6,7 @@ const CSS_DEFAULT = `
 
 const CSS_RIS = `
 <style>
-select {
+.ris-widget select {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -moz-appearance: none;
@@ -116,7 +116,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
             </select>
         </div>
     </li>
-    <li class="pr-3 w-25 m-w-100 disabled" id="ris-county">
+    <li class="pr-3 w-25 m-w-100 disabled ris-section-actions">
         <div class="block pb-2">
             <select class="w-100" id="ris-county">
                 <option value="">... select county</option>
@@ -129,7 +129,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
             <h6 class="p-0 m-0">i.e. Wheelchair, Free</h6>
         </div>
     </li>-->
-    <li class="pr-3 w-25 m-w-100">
+    <li class="pr-3 w-25 m-w-100 disabled ris-section-actions">
         <div class="block">
             <input type="button" value="Search" id="ris-list-programs" class="w-100 button-search">
         </div>
@@ -156,7 +156,7 @@ const JS_WIDGET = `; (function (window, document) {
             argumentsFilter.address['state']=state;
             
             for (const county in state) {
-                selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
+                selectStates.options[selectStates.options.length] = new Option(county, state[county]);
             }
         };
         selectCounties.onchange = function(){
