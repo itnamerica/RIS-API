@@ -140,7 +140,7 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
 </form>`;
 
 const JS_WIDGET = `; (function (window, document) {
-    let arguments={address:{},options};
+    let arguments={address:{},options:{}};
     let widget = document.getElementById('widget-ris');
     if(widget!= null){
         let htmlWidget =\`
