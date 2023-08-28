@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-const list = async () => {
+const list = async (request, response) => {
     try {
         const profiles = [
             {
@@ -212,9 +212,9 @@ const list = async () => {
                 "Scheduling_OnDemand": "0",
                 "Scheduling_FixedSchedule": "0"
             }];
-        return profiles;
+        response.header("Access-Control-Allow-Origin", "*").status(200).send(profiles);
     } catch (err) {
-        throw boom.boomify(err);
+        return response.status(500).send({ error: 'program fetch failed!' });
     }
 };
 
