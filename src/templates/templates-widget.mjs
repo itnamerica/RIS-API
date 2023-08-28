@@ -167,8 +167,7 @@ const JS_WIDGET = `; (function (window, document) {
         let buttonListPrograms=document.getElementById('ris-list-programs');
         buttonListPrograms.onclick=function() {
             console.log('ris list',argumentsFilter);
-            if (argumentsFilter.address.state&&address.county) {
-                getPrograms(argumentsFilter);
+            if (argumentsFilter.address.state&&argumentsFilter.address.county) {
                 fetch("https://api.ridesinsight.org/api/programs").then(response => {
                     return response.json();
                 }).then(data => console.log(data));
