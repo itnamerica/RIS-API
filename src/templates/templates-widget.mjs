@@ -217,12 +217,12 @@ const JS_WIDGET = `; (function (window, document) {
                 fetch("https://api.ridesinsight.org/api/programs").then(response => {
                     return response.json();
                 }).then(data => console.log(data));
+                let event = new CustomEvent('ris-program-search', {
+                    bubbles: true,
+                    cancelable: true
+                });
+                document.dispatchEvent(event);
             }
-            let event = new CustomEvent('ris-program-search', {
-                bubbles: true,
-                cancelable: true
-            });
-            document.dispatchEvent(event);
         };
     }else{
         console.log('cannot load RIS widget');
