@@ -26,6 +26,8 @@ const authenticate = (request, response, done) => {
     let origin = request.hostname.split(':');
     let domain = origin[0];
 
+    // https://blog.logrocket.com/understanding-api-key-authentication-node-js/
+
     let keyAPI = request.query["key"]; //Add API key to headers
     try {
         if (!keyAPI) {

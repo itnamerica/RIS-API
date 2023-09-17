@@ -36,6 +36,31 @@ const CSS_RIS = `
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.4);
 }
+
+#ris-progress {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    border: solid 1px #ffe9d0;
+    position: relative;
+    overflow: hidden;
+    background-color: #DCAF82;
+    margin: 0;
+    display:none;
+}
+
+#ris-progress:after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 0px;
+    left: -30%;
+    width: 30%;
+    height: 4px;
+    background-color: #334a51;
+    animation: loading 1s linear infinite;
+    z-index: 99999;
+}
 </style>`;
 
 const SCRIPT_DEFAULT = `
@@ -55,7 +80,7 @@ ${CSS_DEFAULT}
 ${SCRIPT_DEFAULT}
 `;
 
-const HTML_FORM = `<form method="get" id="ris-search-program">
+const HTML_WIDGET = `<form method="get" id="ris-search-program">
 <h2 class="center-text pt-3 pb-2">Search for transportation programs</h2>
 <ul class="columns align-c">
     <li class="pr-3 w-25 m-w-100">
@@ -135,16 +160,37 @@ const HTML_FORM = `<form method="get" id="ris-search-program">
         </div>
     </li>
 </ul>
-</form>`;
+</form>
+<div id="ris-progress"></div>
+<div id="ris-results"></div>`;
 
 const JS_WIDGET = `; (function (window, document) {
     const STATES=${STATES};
     let argumentsFilter={address:{},options:{}};
     let widget = document.getElementById('widget-ris');
+    const formatPhoneNumber=(digits)=>{
+        let cleaned=('' + digits).replace(/\D/g, '').slice(-10);
+        let matches = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (matches) {
+            return '(' + matches[1] + ') ' + matches[2] + '-' + matches[3]
+        };
+        return '';
+    }
+
+    const busy=()=> {
+        var progress = document.getElementById('ris-progress');
+        progress.style.display = "block";
+    }
+
+    const free = () =>{
+        var progress = document.getElementById('ris-progress');
+        progress.style.display = "none";
+    }
+
     if(widget!= null){
         let htmlWidget =\`
             ${CSS_RIS}
-            ${HTML_FORM}\`;
+            ${HTML_WIDGET}\`;
         let divWidget = document.createElement('div');
         divWidget.className = 'ris-widget';
         divWidget.innerHTML = htmlWidget;
@@ -172,9 +218,34 @@ const JS_WIDGET = `; (function (window, document) {
                     return response.json();
                 }).then(data => console.log(data));
             }
+            let event = new CustomEvent('ris-program-search', {
+                bubbles: true,
+                cancelable: true
+            });
+            document.dispatchEvent(event);
         };
     }else{
-    console.log('cannot load RIS widget');
+        console.log('cannot load RIS widget');
     }
 })(window, document);`;
 export default { JS_WIDGET };
+
+
+// UTILS
+// const getJSON = (url) => {
+//     return new Promise((resolve, reject) => {
+//         fetch(url).then(response => {
+//             return response.json();
+//         }).then(data => {
+//             resolve(data);
+//         }).catch(err => {
+//             resolve({});
+//         });
+//     });
+// };
+
+// // GET STARTED
+// const init = async () => {
+//     DATA.order = await getJSON(URL_ORDER);
+//     console.log('DATA.order', DATA.order);
+// };

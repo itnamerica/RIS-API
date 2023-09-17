@@ -1,6 +1,18 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+const trimProgram = program => {
+    const { TransportationProgramId, Program, Organization, City, State, Phone } = program;
+    return {
+        id: TransportationProgramId,
+        title: Program,
+        organization: Organization,
+        city: City,
+        state: State,
+        phone: Phone //('' + Phone).replace(/\D/g, '').slice(-10),
+    };
+};
+
 const list = async (request, response) => {
     try {
         const profiles = [
@@ -212,7 +224,9 @@ const list = async (request, response) => {
                 "Scheduling_OnDemand": "0",
                 "Scheduling_FixedSchedule": "0"
             }];
-        response.header("Access-Control-Allow-Origin", "*").status(200).send(profiles);
+
+        const programs = profiles.map(trimProgram);
+        response.header("Access-Control-Allow-Origin", "*").status(200).send(programs);
     } catch (err) {
         return response.status(500).send({ error: 'program fetch failed!' });
     }
@@ -220,6 +234,7 @@ const list = async (request, response) => {
 
 const get = async (request) => {
     const { id } = request.params;
+    // https://blog.logrocket.com/understanding-api-key-authentication-node-js/
     try {
         const profile = await prisma.profile.findUnique({
             where: { id: Number(id) },
