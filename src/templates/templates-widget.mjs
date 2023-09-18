@@ -204,7 +204,9 @@ const JS_WIDGET = `; (function (window, document) {
             Array.from(selectCounties.options).forEach(option => option.remove());
             selectCounties.options[selectCounties.options.length] = new Option('... select county', '');
             for (const county in state) {
-                selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
+                if(county.includes('County')){
+                    selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
+                }
             }
         };
         selectCounties.onchange = function(){
