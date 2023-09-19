@@ -60,6 +60,7 @@ const CSS_RIS = `
     background-color: #1b4a50;
     color: #fff;
     border: 2px solid #399eaa;
+    justify-content: center;
 }
 
 .ris-widget select {
