@@ -6,35 +6,54 @@ const CSS_DEFAULT = `
 
 const CSS_RIS = `
 <style>
+.ris-widget *{
+    box-sizing: border-box;
+}
+
+.ris-widget button,
+.ris-widget input[type=text],
 .ris-widget select {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    appearance: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 4px;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    box-shadow: none;
+}
+
+.ris-widget input[type=text],
+.ris-widget select {
+    flex-grow: 2;
+    flex-basis: 200px;
+    background-color: #fff;
+    color: #4a4a4a;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.ris-widget button{
+    flex-grow: 1;
+    flex-basis: 200px;
+    cursor: pointer;
+    background-color: #1b4a50;
+    color: #fff;
+    border: 2px solid #399eaa;
+}
+
+.ris-widget select {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAMAAACJrC6lAAAAElBMVEUAAAD///+ampqcnJydnZ2dnZ2R/6zGAAAABXRSTlMAAAEBAa21bVEAAAA/SURBVHjalc9RCgAgCERBs/b+V04MsVgJXOhreEgyvnOWZ32GJoP4dizmdGh9G/O0Qhydv5q9Ny05+va/aQ3eBz0BWHmtb2cAAAAASUVORK5CYII=);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 23px 9px;
-  -moz-box-sizing: border-box;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  background-color: #fff;
-  box-sizing: border-box;
   cursor: pointer;
   margin: 0;
   outline: none;
   padding: 11px 30px 10px 10px;
-  vertical-align: middle;
-  font-family: "inter", -apple-system, "Helvetica Neue", sans-serif;
-  font-weight: normal;
-  font-size: 16px;
-  color: #4a4a4a;
-  line-height: 20px;
-  min-width: 40px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 #ris-progress {
