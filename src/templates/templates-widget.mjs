@@ -19,6 +19,7 @@ const CSS_RIS = `
 
 .ris-widget .flex{
     display:flex;
+    gap: 10px;
 }
 
 .ris-widget .align-c{
@@ -40,6 +41,7 @@ const CSS_RIS = `
     font-weight: normal;
     font-size: 16px;
     box-shadow: none;
+    padding: 0 10px;
 }
 
 .ris-widget input[type=text],
@@ -68,7 +70,7 @@ const CSS_RIS = `
   cursor: pointer;
   margin: 0;
   outline: none;
-  padding: 11px 30px 10px 10px;
+  padding: 0 30px 0 10px;
 }
 
 #ris-progress {
