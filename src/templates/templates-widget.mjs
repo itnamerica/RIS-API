@@ -224,7 +224,7 @@ const JS_WIDGET = `; (function (window, document) {
             Array.from(selectCounties.options).forEach(option => option.remove());
             selectCounties.options[selectCounties.options.length] = new Option('... select county', '');
             for (const county in state) {
-                if(county.includes('County')){
+                if(county.includes('County')||county.includes('Borough')||county.includes('Parish')){
                     selectCounties.options[selectCounties.options.length] = new Option(county, state[county]);
                 }
             }
