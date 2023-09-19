@@ -17,6 +17,14 @@ const CSS_RIS = `
     font-size:20px;
 }
 
+.ris-widget .flex{
+    display:flex;
+}
+
+.ris-widget .align-c{
+    align-items: center;
+}
+
 .ris-widget button,
 .ris-widget input[type=text],
 .ris-widget select {
@@ -108,7 +116,7 @@ ${SCRIPT_DEFAULT}
 
 const HTML_WIDGET = `<form method="get" id="ris-search-program">
 <h3>Search for transportation programs</h3>
-<div class="flex">
+<div class="flex align-c">
     <select id="ris-state">
         <option value="">... select state</option>
         <option value="AL">Alabama</option>
