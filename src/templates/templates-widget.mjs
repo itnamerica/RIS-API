@@ -7,7 +7,7 @@ const CSS_DEFAULT = `
 const CSS_RIS = `
 <style>
 .ris-widget{
-    padding:2em 0;
+    padding:1em 0;
 }
 .ris-widget *{
     box-sizing: border-box;
@@ -15,6 +15,7 @@ const CSS_RIS = `
 
 .ris-widget h3{
     font-size:20px;
+    text-align:center;
 }
 
 .ris-widget .flex{
