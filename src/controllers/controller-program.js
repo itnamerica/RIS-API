@@ -29,7 +29,7 @@ const list = async (request, response) => {
         // const programs = profiles.map(trimProgram);
         response.header("Access-Control-Allow-Origin", "*").status(200).send(programs);
     } catch (err) {
-        return response.status(500).send({ error: `program fetch failed! ${err}` });
+        return response.header("Access-Control-Allow-Origin", "*").status(500).send({ error: `program fetch failed! ${err}` });
     }
 };
 
