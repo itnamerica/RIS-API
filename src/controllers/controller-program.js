@@ -4,14 +4,16 @@ require('dotenv').config();
 
 // import Sequelize from 'sequelize';
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    "dialectOptions": {
-        "ssl": {
-            "require": true,
-            "rejectUnauthorized": (process.env.ENVIRONMENT != 'local')
-        }
-    }
-});
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//     "dialectOptions": {
+//         "ssl": {
+//             "require": true,
+//             "rejectUnauthorized": (process.env.ENVIRONMENT != 'local')
+//         }
+//     }
+// });
+
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 // import initModels from './models/init-models';
 var initModels = require('../models/init-models');
