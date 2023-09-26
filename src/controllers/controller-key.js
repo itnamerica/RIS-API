@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 const API_SECRET = process.env.API_SECRET;
 
 const generate = (request, response) => {
@@ -52,4 +53,6 @@ const authenticate = (request, response, done) => {
     }
 };
 
-export default { generate, authenticate };
+// export default { generate, authenticate };
+
+module.exports = { generate, authenticate };

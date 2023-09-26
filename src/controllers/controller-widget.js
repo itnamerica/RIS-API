@@ -1,5 +1,5 @@
-import TEMPLATES from '../templates/templates-widget.mjs';
-// const TEMPLATES = require('./templates/templates-widget');
+// import TEMPLATES from '../templates/templates-widget.mjs';
+const TEMPLATES = require('../templates/templates-widget');
 
 const get = async (request, response) => {
     // const { custom } = request.params;
@@ -16,4 +16,6 @@ const get = async (request, response) => {
     response.raw.end();
 };
 
-export default { get };
+// export default { get };
+
+module.exports = { get };

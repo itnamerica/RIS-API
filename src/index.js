@@ -1,19 +1,26 @@
 // import 'dotenv/config';
-import Fastify from 'fastify';
-const fastify = Fastify({
+// import Fastify from 'fastify';
+// const fastify = Fastify({
+// 	ignoreTrailingSlash: true,
+// 	logger: true
+// });
+
+const fastify = require('fastify')({
 	ignoreTrailingSlash: true,
 	logger: true
 });
 
-import fastifyStatic from '@fastify/static';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fastifyStatic = require('@fastify/static');
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+// import fastifyStatic from '@fastify/static';
+// import path from 'path';
+const path = require('path');
+// import { fileURLToPath } from 'url';
+// const url = require('url');
 
 // https://blog.danidre.com/how-i-created-my-own-authentication-system#heading-assurances
-import secureSession from '@fastify/secure-session';
+// import secureSession from '@fastify/secure-session';
+const secureSession = require('@fastify/secure-session');
 const configSession = {
 	secret: process.env.COOKIE_SECRET || 'e56e3be3abc4665053d95f07bdf37ede02cacc971128d30d0a5e6468ecba97860d0530e086736b6ee02d02eca19e1847e4a8897e372581d3ccd4cdd3f205b88d',
 	salt: 'mq9hDxBVDbspDR6n',
@@ -39,8 +46,10 @@ fastify.register(import('@fastify/rate-limit'), {
 	global: false,
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+
 fastify.register(fastifyStatic, {
 	root: path.join(__dirname, '../public'),
 	serveDotFiles: true,
@@ -48,7 +57,8 @@ fastify.register(fastifyStatic, {
 	// constraints: { host: 'example.com' } // optional: default {}
 });
 
-import routes from './routes.js';
+// import routes from './routes.js';
+const routes = require('./routes.js');
 routes.forEach((route, index) => {
 	fastify.route(route);
 });
@@ -57,8 +67,8 @@ routes.forEach((route, index) => {
 	try {
 		console.log('process.env.PORT', process.env.PORT);
 		fastify.listen({
-			port: PORT,
-			host: HOST
+			port: process.env.PORT,
+			host: process.env.HOST
 		}, (err, address) => {
 			if (err) {
 				fastify.log.error(err);
@@ -93,3 +103,22 @@ routes.forEach((route, index) => {
 
 // Register Swagger
 // fastify.register(require('fastify-swagger'), swagger.options);
+
+
+// const { Sequelize } = require('sequelize');
+
+// import Sequelize from 'sequelize';
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+// 	"dialectOptions": {
+// 		"ssl": {
+// 			"require": true,
+// 			"rejectUnauthorized": false
+// 		}
+// 	}
+// });
+// try {
+// 	await sequelize.authenticate();
+// 	console.log('Connection has been established successfully.');
+// } catch (error) {
+// 	console.error('Unable to connect to the database:', error);
+// }

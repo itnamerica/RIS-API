@@ -1,11 +1,12 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 // const auth from ('../lib/auth');
-import { compare, genSaltSync, hash } from 'bcrypt';
+// import { compare, genSaltSync, hash } from 'bcrypt';
+const bcrypt = require('bcrypt');
 
 // const boom from ('boom');
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+// import { PrismaClient } from '@prisma/client';
+// const prisma = new PrismaClient();
 
 const session = async (request, response) => {
     const authenticated = authenticate(request);
@@ -86,9 +87,9 @@ const signout = async (request, response) => {
 };
 
 const hashPassword = (password) => {
-    let salt = genSaltSync(10);
+    let salt = bcrypt.genSaltSync(10);
     return new Promise(resolve => {
-        hash(password, salt, (error, saltedPassword) => {
+        bcrypt.hash(password, salt, (error, saltedPassword) => {
             if (error) {
                 resolve(false);
             }
@@ -99,7 +100,7 @@ const hashPassword = (password) => {
 
 const comparePassword = (password, hashedPassword) => {
     return new Promise(resolve => {
-        compare(password, hashedPassword, (error, same) => {
+        bcrypt.compare(password, hashedPassword, (error, same) => {
             if (error) {
                 resolve(false);
             }
@@ -145,7 +146,8 @@ const authenticate = (request) => {
     return !!user;
 };
 
-export default { signup, signin, session, profile, signout };
+// export default { signup, signin, session, profile, signout };
+module.exports = { signup, signin, session, profile, signout };
 
 // const verifyUPW = async (request, response) => {
 //     try {

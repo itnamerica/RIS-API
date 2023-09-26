@@ -1,0 +1,13 @@
+{
+    "username": "ris",
+    "password": "iPOpLR1To6ZH4XGKru2Xwa2jE7IR2d7M",
+    "database": "ris",
+    "host": "dpg-cjj7g1gcfp5c73ek1mv0-a.ohio-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+        "ssl": {
+            "require": true,
+            "rejectUnauthorized": false
+        }
+    }
+}

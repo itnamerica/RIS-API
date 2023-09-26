@@ -1,7 +1,12 @@
-import controllerKey from './controllers/controller-key.js';
-import controllerProgram from './controllers/controller-program.js';
-import controllerUser from './controllers/controller-user.js';
-import controllerWidget from './controllers/controller-widget.js';
+// import controllerKey from './controllers/controller-key.js';
+// import controllerProgram from './controllers/controller-program.js';
+// import controllerUser from './controllers/controller-user.js';
+// import controllerWidget from './controllers/controller-widget.js';
+
+const controllerKey = require('./controllers/controller-key');
+const controllerProgram = require('./controllers/controller-program');
+const controllerUser = require('./controllers/controller-user');
+const controllerWidget = require('./controllers/controller-widget');
 
 const routesProgram = [
     {
@@ -98,7 +103,9 @@ const routesWidget = [
     }
 ];
 
-export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
+// export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
+
+module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
 // Error: Resource not found on the server
 // Status Code: 404 Not Found
