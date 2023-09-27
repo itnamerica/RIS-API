@@ -3,17 +3,19 @@
 require('dotenv').config();
 
 // import Sequelize from 'sequelize';
-const Sequelize = require('sequelize');
-// const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//     "dialectOptions": {
-//         "ssl": {
-//             "require": true,
-//             "rejectUnauthorized": (process.env.ENVIRONMENT != 'local')
-//         }
-//     }
-// });
-
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const { Sequelize, Op } = require('sequelize');
+let options = {};
+if (process.env.ENVIRONMENT == 'local') {
+    options = {
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
+        }
+    };
+}
+const sequelize = new Sequelize(process.env.DATABASE_URL, options);
 
 // import initModels from './models/init-models';
 var initModels = require('../models/init-models');
@@ -25,13 +27,61 @@ const trimProgram = program => {
 };
 
 const list = async (request, response) => {
+    response.header("Access-Control-Allow-Origin", "*");
     try {
-        let programs = await models.transportation_programs.findAll({ where: { is_active: 1, state: 'ME' } });
+        let filter = { is_active: 1 };
+        let { zipcode, county, free, nonprofit, wheelchair, purpose } = request.query;
+        // console.log('request.params', request.query);
+
+        if (!zipcode && !county) {
+            return response.status(500).send({ error: `missing parameters` });
+        }
+
+        if (county) {
+            filter['service_areas'] = {
+                [Op.overlap]: [county]
+            };
+        }
+
+        if (zipcode) {
+            filter['service_area_zipcodes'] = {
+                [Op.overlap]: [zipcode]
+            };
+        }
+
+        // let optional = {};
+        if (free) {
+            filter['payment_free'] = 1;
+        }
+
+        if (nonprofit) {
+            filter['provider_type_nonprofit'] = 1;
+        }
+
+        if (wheelchair) {
+            filter['vehicles_used_wheelchair'] = 1;
+        }
+
+        // console.log('optional', optional);
+
+        // if (Object.keys(optional).length > 0) {
+        //     filter[[Op.or]] = optional;
+        // }
+
+        console.log('filter', filter);
+
+        //test
+        // return response.status(200).send(request.query);
+
+        let programs = await models.transportation_programs.findAll({
+            // attributes: ['program', 'city', 'phone', 'website', 'payment_free', 'provider_type_nonprofit', 'vehicles_used_wheelchair'],
+            where: filter
+        });
 
         // const programs = profiles.map(trimProgram);
-        response.header("Access-Control-Allow-Origin", "*").status(200).send(programs);
+        return response.status(200).send(programs);
     } catch (err) {
-        return response.header("Access-Control-Allow-Origin", "*").status(500).send({ error: `program fetch failed! ${err}` });
+        return response.status(500).send({ error: `program fetch failed! ${err}` });
     }
 };
 

@@ -7,7 +7,7 @@
 
 const fastify = require('fastify')({
 	ignoreTrailingSlash: true,
-	logger: true
+	// logger: true
 });
 
 const fastifyStatic = require('@fastify/static');
