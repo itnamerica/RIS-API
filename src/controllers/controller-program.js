@@ -59,7 +59,7 @@ const list = async (request, response) => {
         }
 
         if (wheelchair) {
-            filter['vehicles_used_wheelchair'] = 1;
+            filter['assistance_wheelchair'] = 1; //vehicles_used_wheelchair;
         }
 
         // console.log('optional', optional);
