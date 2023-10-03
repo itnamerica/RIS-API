@@ -21,9 +21,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, options);
 var initModels = require('../models/init-models');
 var models = initModels(sequelize);
 
-const trimProgram = program => {
+const trimRecord = program => {
     // const { transportation_program_id, program, organization, street_address, street_address_second, city, state, zip, phone, website } = program;
-    return { transportation_program_id, program, organization, street_address, street_address_second, city, state, zip, phone, website, service_area_description } = program;
+    // return { transportation_program_id, program, organization, street_address, street_address_second, city, state, zip, phone, website, service_area_description } = program;
+
+    const { is_active, date_verified, date_created, created_by, date_modified, modified_by, ...rest } = program;
+    return rest;
 };
 
 const list = async (request, response) => {
@@ -73,12 +76,12 @@ const list = async (request, response) => {
         //test
         // return response.status(200).send(request.query);
 
-        let programs = await models.transportation_programs.findAll({
+        let records = await models.transportation_programs.findAll({
             // attributes: ['program', 'city', 'phone', 'website', 'payment_free', 'provider_type_nonprofit', 'vehicles_used_wheelchair'],
             where: filter
         });
 
-        // const programs = profiles.map(trimProgram);
+        const programs = records.map(trimRecord);
         return response.status(200).send(programs);
     } catch (err) {
         return response.status(500).send({ error: `program fetch failed! ${err}` });

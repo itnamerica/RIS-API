@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('transportation_programs', {
     transportation_program_id: {
       autoIncrement: true,
@@ -372,6 +372,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     eligibility_veteran: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
+    },
+    eligibility_seniors: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
+    },
+    eligibility_native_american: {
       type: DataTypes.SMALLINT,
       allowNull: false
     },
