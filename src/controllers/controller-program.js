@@ -33,7 +33,7 @@ const list = async (request, response) => {
     response.header("Access-Control-Allow-Origin", "*");
     try {
         let filter = { is_active: 1 };
-        let { zipcode, county, free, nonprofit, wheelchair, purpose } = request.query;
+        let { zipcode, county, free, nonprofit, wheelchair, purpose, door_to_door, eligibility_seniors } = request.query;
         // console.log('request.params', request.query);
 
         if (!zipcode && !county) {
@@ -62,7 +62,14 @@ const list = async (request, response) => {
         }
 
         if (wheelchair) {
-            filter['assistance_wheelchair'] = 1; //vehicles_used_wheelchair;
+            filter['assistance_wheelchair'] = 1;
+        }
+
+        if (door_to_door) {
+            filter['transportation_door_to_door'] = 1;
+        }
+        if (eligibility_seniors) {
+            filter['eligibility_seniors'] = 1;
         }
 
         // console.log('optional', optional);
