@@ -86,7 +86,8 @@ const list = async (request, response) => {
         let records = await models.transportation_programs.findAll({
             raw: true,
             // attributes: ['program', 'city', 'phone', 'website', 'payment_free', 'provider_type_nonprofit', 'vehicles_used_wheelchair'],
-            where: filter
+            where: filter,
+            order: ['organization']
         });
 
         const programs = records.map(trimRecord);
