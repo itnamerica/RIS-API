@@ -25,7 +25,7 @@ const trimRecord = program => {
     // const { transportation_program_id, program, organization, street_address, street_address_second, city, state, zip, phone, website } = program;
     // return { transportation_program_id, program, organization, street_address, street_address_second, city, state, zip, phone, website, service_area_description } = program;
 
-    const { is_active, date_verified, date_created, created_by, date_modified, modified_by, private_notes, ...rest } = program;
+    const { is_active, created_by, modified_by, private_notes, ...rest } = program;
     return rest;
 };
 
