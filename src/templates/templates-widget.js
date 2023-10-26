@@ -59,7 +59,7 @@ const JS_WIDGET = `; (function (window, document) {
         script.src = 'https://api.ridesinsight.org/js/html2pdf.bundle.min.js';
         document.head.appendChild(script);
 
-        let htmlWidget = \`\${CSS_RIS}\${HTML_WIDGET}\`;
+        let htmlWidget = \`${CSS_RIS}${HTML_WIDGET}\`;
         let divWidget = document.createElement('div');
         divWidget.className = 'ris-widget';
         divWidget.innerHTML = htmlWidget;
