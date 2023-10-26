@@ -32,7 +32,9 @@ const trimRecord = program => {
 const list = async (request, response) => {
     response.header("Access-Control-Allow-Origin", "*");
     try {
-        let filter = { is_active: 1 };
+        let filter = {
+            is_active: 1
+        };
         let { zipcode, county, free, nonprofit, wheelchair, purpose, door_to_door, eligibility_seniors } = request.query;
         // console.log('request.params', request.query);
 
