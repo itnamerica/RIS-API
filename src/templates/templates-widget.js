@@ -29,7 +29,7 @@ const HTML_WIDGET = `
 
 const JS_WIDGET = `; (function (window, document) {
     const STATES=${STATES};
-    let argumentsURL = { zipcode: '04106' };
+    let argumentsURL = {};
     let widget = document.getElementById('widget-ris');
     const formatPhoneNumber = (digits) => {
         let cleaned = ('' + digits).replace(/\D/g, '').slice(-10);
