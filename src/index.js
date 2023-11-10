@@ -42,17 +42,17 @@ fastify.register(fastifyStatic, {
 	// constraints: { host: 'example.com' } // optional: default {}
 });
 
-fastify.register(fastifyStatic, {
-	root: path.join(__dirname, '../kml'),
-	serveDotFiles: true,
-	prefix: '/kml/', // this is the URL prefix
-	decorateReply: false
-});
-
 if (process.env.NODE_ENV === 'production') {
 	configSession.cookie.secure = true; // serve secure cookies
 	configSession.cookie.httpOnly = true; // serve cookies only accessible by the server
 	configSession.cookie.sameSite = 'strict'; // serve cookies only from site
+
+	fastify.register(fastifyStatic, {
+		root: path.join(__dirname, '/kml'),
+		serveDotFiles: true,
+		prefix: '/kml/', // this is the URL prefix
+		decorateReply: false
+	});
 }
 fastify.register(secureSession, configSession);
 //
