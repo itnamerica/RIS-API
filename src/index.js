@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production') {
 	configSession.cookie.sameSite = 'strict'; // serve cookies only from site
 
 	fastify.register(fastifyStatic, {
-		root: path.join(__dirname, '/kml'),
+		root: '/kml', // path.join(__dirname, '/kml'),
 		serveDotFiles: true,
 		prefix: '/kml/', // this is the URL prefix
 		decorateReply: false
