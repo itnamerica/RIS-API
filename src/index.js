@@ -43,7 +43,7 @@ fastify.register(fastifyStatic, {
 });
 
 fastify.register(fastifyStatic, {
-	root: path.join(__dirname, '/kml'),
+	root: path.join(__dirname, '../kml'),
 	serveDotFiles: true,
 	prefix: '/kml/', // this is the URL prefix
 	decorateReply: false
