@@ -10,11 +10,13 @@ const fastify = require('fastify')({
 	// logger: true
 });
 
+// https://github.com/fastify/fastify-static
 const fastifyStatic = require('@fastify/static');
+const path = require('path');
 
 // import fastifyStatic from '@fastify/static';
 // import path from 'path';
-const path = require('path');
+
 // import { fileURLToPath } from 'url';
 // const url = require('url');
 
@@ -32,10 +34,23 @@ const configSession = {
 	}
 };
 
+fastify.register(fastifyStatic, {
+	root: path.join(__dirname, '../public'),
+	serveDotFiles: true,
+	// prefix: '/public/', // optional: default '/'
+	// constraints: { host: 'example.com' } // optional: default {}
+});
+
 if (process.env.NODE_ENV === 'production') {
 	configSession.cookie.secure = true; // serve secure cookies
 	configSession.cookie.httpOnly = true; // serve cookies only accessible by the server
 	configSession.cookie.sameSite = 'strict'; // serve cookies only from site
+
+	fastify.register(fastifyStatic, {
+		root: path.join(__dirname, '/kml'),
+		serveDotFiles: true,
+		prefix: '/kml/' // this is the URL prefix
+	});
 }
 fastify.register(secureSession, configSession);
 //
@@ -48,14 +63,6 @@ fastify.register(import('@fastify/rate-limit'), {
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
-
-fastify.register(fastifyStatic, {
-	root: path.join(__dirname, '../public'),
-	serveDotFiles: true,
-	// prefix: '/public/', // optional: default '/'
-	// constraints: { host: 'example.com' } // optional: default {}
-});
 
 // import routes from './routes.js';
 const routes = require('./routes.js');
