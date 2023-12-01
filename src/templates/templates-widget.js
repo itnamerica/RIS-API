@@ -33,11 +33,12 @@ const JS_WIDGET = `; (function (window, document) {
     let widget = document.getElementById('widget-ris');
     const formatPhoneNumber = (digits) => {
         let cleaned = ('' + digits).replace(/\D/g, '').slice(-10);
-        let matches = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        const regexPattern = /^(\\d{3})(\\d{3})(\\d{4})$/;
+        let matches = cleaned.match(regexPattern);
         if (matches) {
             return '(' + matches[1] + ') ' + matches[2] + '-' + matches[3];
         };
-        return '';
+        return digits;
     };
 
     const busy = () => {
@@ -162,7 +163,7 @@ const JS_WIDGET = `; (function (window, document) {
                     return \`<div>\${(program?.street_address && program?.street_address.toLowerCase() != 'n/a') ? program?.street_address + ', ' : ''}\${(program?.street_address_second) ? program?.street_address_second + ', ' : ''}\${program.city ? program.city + ', ' : ''}\${program.state ? program.state + ' ' : ''}\${program.zip}</div>\`;
                 },
                 'website': (program) => {
-                    return \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong><!--&nbsp;&nbsp;<button class="inline" class="" onclick="showMap([\${program.service_area_zipcodes.join(',')}])">Display service area on map</button>--></div>\`;
+                    return \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong></div>\`;
                 },
                 'special-requirements-for-service': (program) => {
                     return (program?.special_requirements) ? program.special_requirements : '';
@@ -521,7 +522,7 @@ const JS_WIDGET = `; (function (window, document) {
                             <div class="pt-sm">
                                 \${processField('address', program)}                                    
                                 <div><small>\${program?.driver_type_volunteers == 1 ? '<div>PROGRAM TYPE</div>Volunteer Transportation' : ''}</small></div>
-                                \${processField('website', program)}   
+                                \${processField('website', program)}
                                 \${processField('phone', program)}    
                                 <div class="p-sm">\${program.service_area_description ? '<div class="pt-sm"><strong>AREAS SERVED</strong></div>' + program.service_area_description : ''}</div>
                             </div>
