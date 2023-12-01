@@ -25,8 +25,12 @@ const generate = (request, response) => {
 };
 
 const authenticate = (request, response, done) => {
-    let origin = request.hostname.split(':');
-    let domain = origin[0];
+    // let origin = request.hostname.split(':');
+    // let domain = origin[0];
+
+    // Retrieve the Host header from the request
+    const host = request.headers.host;
+    const domain = host.split(':')[0];
 
     // https://blog.logrocket.com/understanding-api-key-authentication-node-js/
 
