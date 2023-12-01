@@ -487,7 +487,7 @@ const JS_WIDGET = `; (function (window, document) {
 
                 const params = new URLSearchParams(options);
                 const query = params.toString(); // Output: foo=1&bar=2
-                const url = \`http://localhost:3000/api/programs?\${query}\&key=API_KEY\`;
+                const url = \`https://api.ridesinsight.org/api/programs?\${query}\&key=API_KEY\`;
                 console.log('url', url);
                 busy();
 
