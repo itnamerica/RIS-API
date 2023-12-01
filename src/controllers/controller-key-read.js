@@ -1,15 +1,16 @@
-// import jwt from 'jsonwebtoken';
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const API_SECRET = process.env.API_SECRET;
+const API_SECRET_READ = process.env.API_SECRET_READ;
 
 const generate = (request, response) => {
-    let origin = request.hostname.split(':');
-    let domain = origin[0];
-    console.log('domain', domain);
+    // let origin = request.hostname.split(':');
+    // let domain = origin[0];
+    let domain = request.query["domain"];
+    console.log('domain', domain, API_SECRET_READ);
     try {
         const key = jwt.sign({
             'domain': domain
-        }, API_SECRET, {
+        }, API_SECRET_READ, {
             algorithm: 'HS256'
         });
 
@@ -35,13 +36,13 @@ const authenticate = (request, response, done) => {
             console.log(`invalid key, origin: ${origin}`);
             response.status(401).send('invalid key');
         } else {
-            jwt.verify(keyAPI, API_SECRET, (error, payload) => {
+            jwt.verify(keyAPI, API_SECRET_READ, (error, payload) => {
                 console.log('authenticateKey', payload, domain);
                 if (error) {
                     response.status(401).send(error);
                 }
 
-                if (domain != payload.domain) {
+                if (payload.domain != 'risbackend' && domain != payload.domain) {
                     response.status(401).send('invalid key');
                 }
 

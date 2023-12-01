@@ -3,7 +3,8 @@
 // import controllerUser from './controllers/controller-user.js';
 // import controllerWidget from './controllers/controller-widget.js';
 
-const controllerKey = require('./controllers/controller-key');
+const controllerKeyRO = require('./controllers/controller-key-read');
+const controllerKeyAdmin = require('./controllers/controller-key-admin');
 const controllerProgram = require('./controllers/controller-program');
 const controllerUser = require('./controllers/controller-user');
 const controllerWidget = require('./controllers/controller-widget');
@@ -12,7 +13,7 @@ const routesProgram = [
     {
         method: 'GET',
         url: '/api/programs',
-        // preHandler: controllerKey.authenticate,
+        preHandler: controllerKeyRO.authenticate,
         handler: controllerProgram.list
     },
     {
@@ -41,8 +42,19 @@ const routesKey = [
     {
         method: 'GET',
         url: '/api/keys',
-        preHandler: controllerKey.authenticate,
-        handler: controllerKey.generate,
+        // preHandler: controllerKeyAdmin.authenticate,
+        // preHandler: controllerUser.authenticate,
+        handler: controllerKeyRO.generate,
+    }
+];
+
+const routesKeyAdmin = [
+    {
+        method: 'GET',
+        url: '/api/keys-admin/',
+        // preHandler: controllerKeyAdmin.authenticate,
+        // preHandler: controllerUser.authenticate,
+        handler: controllerKeyRO.generate,
     }
 ];
 
@@ -98,14 +110,15 @@ const routesWidget = [
     {
         method: 'GET',
         url: '/api/widget',
-        // preHandler: controllerKey.authenticate,
+        preHandler: controllerKeyRO.authenticate,
         handler: controllerWidget.get,
     }
 ];
 
 // export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
-module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
+module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget, ...routesKeyAdmin];
+// module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget]; //, ...routesKeyAdmin
 
 // Error: Resource not found on the server
 // Status Code: 404 Not Found

@@ -3,7 +3,7 @@ const CSS_RIS = `<style>
 #ris-form,.ris-widget .pt-sm{padding-top:20px}.ris-widget,.ris-widget .p-sm{padding:20px}.ris-widget{font-size:18px;line-height:1.4em;position:relative;max-width:1000px;margin:0 auto}#ris-form{border:2px solid #618e93;border-radius:5px;background-color:#f3fcff}.ris-widget .bg-green{background-color:#dbeff6}.ris-widget button.ris-close-dialog{position:absolute;top:0;right:0;width:30px;height:30px;padding:0;background:0 0;z-index:999999;box-shadow:none;border:none;border-radius:0;-webkit-transition:.3s;transition:.3s;cursor:pointer;margin:-30px -30px 0 0}.ris-widget button.ris-close-dialog::after,.ris-widget button.ris-close-dialog::before{position:absolute;content:'';display:inline-block;width:16px;height:2px;outline:transparent solid 1px;left:7px;background:#fff}.ris-widget button.ris-close-dialog::before{transform:rotateZ(-45deg)}.ris-widget button.ris-close-dialog::after{transform:rotateZ(45deg)}.ris-widget button.ris-close-dialog:hover{background-color:rgba(0,0,0,.5)}.ris-widget a{color:#0062ff;text-decoration:none;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}.ris-widget *{box-sizing:border-box}.error{color:#d00}.ris-widget h3{font-size:20px;text-align:center;padding-bottom:0;margin:0}.ris-widget .flex{display:flex}.ris-widget .flex.gap{gap:10px}.ris-widget .align-c{justify-content:center}.ris-widget .align-m{align-content:center;align-items:center}.ris-widget .spaced{justify-content:space-between}.ris-widget .px-sm{padding-left:20px;padding-right:20px}.ris-widget label{font-size:18px}.ris-widget input[type=checkbox],.ris-widget input[type=radio]{appearance:none;-webkit-appearance:none;-moz-appearance:none;margin:0 5px 0 0;color:#fff;cursor:pointer;clear:both;outline:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:24px;height:24px;vertical-align:middle;box-shadow:none;border:2px solid #399eaa;display:inline-block;position:relative}.ris-widget input[type=radio]{background-color:#eee;border-radius:50%}.ris-widget input[type=radio]:before{content:'';display:block;position:absolute;top:3px;right:3px;bottom:3px;left:3px;border-radius:50%;background-color:#fff}.ris-widget input[type=radio]:checked:before{background-color:#333}.ris-widget button,.ris-widget input[type=text],.ris-widget select{display:flex;height:40px;align-items:center;appearance:none;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;border-radius:4px;font-family:-apple-system,"Helvetica Neue",sans-serif;font-weight:400;font-size:16px;box-shadow:none;padding:0 10px}.ris-widget button.inline{appearance:none;cursor:pointer;display:inline-block;margin:0;outline:0;background-image:none;background-color:transparent;border:none;color:#0062ff;text-decoration:none;box-shadow:none;text-shadow:none;height:auto;font-size:inherit;font-weight:700;flex-grow:0;flex-basis:unset;text-transform:inherit}.ris-widget input[type=text],.ris-widget select{flex-grow:2;flex-basis:200px;background-color:#fff;color:#4a4a4a;border:2px solid rgba(0,0,0,.4)}.ris-widget button{flex-basis:200px;cursor:pointer;background-color:#1b4a50;color:#fff;border:none;justify-content:center}.ris-widget select{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAMAAACJrC6lAAAAElBMVEUAAAD///+ampqcnJydnZ2dnZ2R/6zGAAAABXRSTlMAAAEBAa21bVEAAAA/SURBVHjalc9RCgAgCERBs/b+V04MsVgJXOhreEgyvnOWZ32GJoP4dizmdGh9G/O0Qhydv5q9Ny05+va/aQ3eBz0BWHmtb2cAAAAASUVORK5CYII=);background-repeat:no-repeat;background-position:right center;background-size:23px 9px;cursor:pointer;margin:0;outline:0;padding:0 30px 0 10px}.ris-printable>li,.ris-widget ul.ris-cards>li{margin:0 0 2rem;text-align:left;padding:2rem 2rem 4rem;background-color:#f3fcff}.ris-widget .border-top{border-top:2px solid #399eaa}.ris-widget .border-left{border-left:2px solid #399eaa}#ris-progress{width:30%;height:3px;border-radius:0;border:none;position:relative;overflow:hidden;background-color:#37a6d2;margin:1rem auto;display:none}#ris-progress:after{display:block;position:absolute;content:'';top:0;left:-30%;width:30%;height:100%;background-color:#fff;animation:1s linear infinite loading;z-index:99999}.ris-widget ul.items,.ris-widget ul.ris-cards{list-style:none;padding:0;margin:0}.ris-widget .ris-column{display:flex;flex-direction:column}.ris-widget .stretch-w{min-width:0;display:flex;width:100%}.ris-widget .stretch-h{min-height:0;display:flex;height:100%;flex-direction:column}.ris-widget .scrollable{overflow-y:auto}.ris-widget ul.ris-cards>li{border:2px solid #618e93;position:relative;border-radius:5px;overflow:hidden}.ris-printable{width:1000px;padding:0;list-style:none}.ris-printable>li{page-break-inside:avoid;page-break-after:always;border:2px solid #618e93}.ris-widget .ris-title{font-size:1.5em;line-height:1.2em;font-weight:700;color:#1b4a50}.ris-widget .ris-title svg{height:25px;width:25px}.ris-widget ul.ris-cards>li .button-suggest{position:absolute;top:0;right:0;font-size:14px;display:flex;align-items:center;height:30px;padding:0 20px}.ris-widget ul.ris-cards>li button.ris-compare{border:none;border-radius:5px 0 0;padding:0 20px;position:absolute;bottom:0;right:0;font-size:14px;height:30px}.ris-widget button.disabled,.ris-widget ul.ris-cards>li button.ris-compare[disabled]{opacity:.6;cursor:not-allowed}@keyframes loading{from{left:-30%;width:30%}50%{width:40%}70%{width:70%}80%{left:50%}95%{left:120%}to{left:100%}}.ris-widget dialog{border:none;position:fixed;height:90vh;width:80vw;max-width:1200px;overflow:visible;padding:0}.ris-widget dialog .dialog-content{position:absolute;left:10px;right:10px;top:10px;bottom:10px;overflow:auto;padding:2rem}.ris-widget dialog::backdrop{background:rgba(60,60,60,.9)}.ris-widget .sticky-bottom.fixed{position:fixed;height:auto;padding:20px;left:0;right:0;bottom:0;background-color:#dbeff6;border-top:2px solid #628e93}.ris-widget hr{display:block;margin:.5em 0;height:0;border:1px solid #628e93}.ris-widget details>summary{padding:0 0 0 1rem;border:none;cursor:pointer;list-style:none;text-align:right;margin-bottom:0;transition:margin 150ms ease-out;display:flex;align-items:center;justify-content:center;font-weight:700;color:#0062ff;text-transform:uppercase}.ris-widget details[open]>summary{margin-bottom:10px}details[open] summary~*{animation:.5s ease-in-out sweep}.ris-widget details>summary::before{content:attr(data-open) ''}.ris-widget details[open]>summary::before{content:attr(data-close) ''}.ris-widget details+div.content{box-sizing:border-box;max-height:0;overflow:hidden;padding:0;transition:max-height .4s ease-out,border 0s linear .4s}.ris-widget details[open]+div.content{max-height:800px;transition:max-height .4s ease-out,border linear}.ris-widget ul.ris-columns{list-style:none;display:flex;flex-wrap:nowrap;width:100%;padding:0;margin:0;justify-content:center}.ris-widget ul.ris-columns li:first-child{flex:0 0 40vw;max-width:600px}.ris-widget ul.ris-columns li:last-child{flex-grow:1}.ris-widget ul.items li{padding:0 20px}.ris-widget ul.items li div{border:1px solid #1b4a50;border-radius:3px;padding:5px 60px 5px 20px;cursor:pointer;overflow:hidden;position:relative;background-color:#fff}.ris-widget ul.items li div::after{content:'×';display:flex;position:absolute;top:0;right:0;bottom:0;width:40px;background-color:#1b4a50;color:#fff;justify-content:center;align-items:center;line-height:1em}.ris-widget .hiding{display:none}
 </style>`;
 const HTML_WIDGET = `
-<div id="ris-form"> <h3>Search for transportation programs</h3> <div class="flex gap align-c align-m p-sm"> <input type="text" id="ris-zipcode" placeholder="enter zip code"> <span>or</span> <select id="ris-state" aria-label="State"> <option value="">... select state</option> <option value="AL">Alabama</option> <option value="AK">Alaska</option> <option value="AZ">Arizona</option> <option value="AR">Arkansas</option> <option value="CA">California</option> <option value="CO">Colorado</option> <option value="CT">Connecticut</option> <option value="DE">Delaware</option> <option value="DC">District Of Columbia</option> <option value="FL">Florida</option> <option value="GA">Georgia</option> <option value="HI">Hawaii</option> <option value="ID">Idaho</option> <option value="IL">Illinois</option> <option value="IN">Indiana</option> <option value="IA">Iowa</option> <option value="KS">Kansas</option> <option value="KY">Kentucky</option> <option value="LA">Louisiana</option> <option value="ME">Maine</option> <option value="MD">Maryland</option> <option value="MA">Massachusetts</option> <option value="MI">Michigan</option> <option value="MN">Minnesota</option> <option value="MS">Mississippi</option> <option value="MO">Missouri</option> <option value="MT">Montana</option> <option value="NE">Nebraska</option> <option value="NV">Nevada</option> <option value="NH">New Hampshire</option> <option value="NJ">New Jersey</option> <option value="NM">New Mexico</option> <option value="NY">New York</option> <option value="NC">North Carolina</option> <option value="ND">North Dakota</option> <option value="OH">Ohio</option> <option value="OK">Oklahoma</option> <option value="OR">Oregon</option> <option value="PA">Pennsylvania</option> <option value="RI">Rhode Island</option> <option value="SC">South Carolina</option> <option value="SD">South Dakota</option> <option value="TN">Tennessee</option> <option value="TX">Texas</option> <option value="UT">Utah</option> <option value="VT">Vermont</option> <option value="VA">Virginia</option> <option value="WA">Washington</option> <option value="WV">West Virginia</option> <option value="WI">Wisconsin</option> <option value="WY">Wyoming</option> </select> <span>and</span> <select id="ris-county" aria-label="County"> <option value="">... select county</option> </select> <button id="ris-list-programs" class="disabled">Search</button> </div> <!--<details class="p-sm options"> <summary class="flex align-c"></summary> </details>--> <div class="flex gap align-c align-m p-sm"> <label class="flex align-m"><input type="radio" name="options" value="all" id="options-any" checked><span>show all</span></label> <label class="flex align-m"><input type="radio" name="options" value="free" id="options-free"><span>free services</span></label> <!--<label class="flex align-m"><input type="radio" name="options" value="nonprofit" id="options-nonprofit"><span>nonprofit organizations</span></label>--> <label class="flex align-m"><input type="radio" name="options" value="wheelchair" id="options-wheelchair"><span>wheelchair accesible vehicles</span></label> </div></div><div id="ris-progress"></div><div id="ris-results"></div><dialog id="ris-dialog-compare"><button class="ris-close-dialog" id="ris-button-close-top"></button><div class="ris-column stretch-h"><div id="header-compare"></div><div class="scrollable stretch-w stretch-h" id="content-compare"></div><div class="flex align-c align-m p-sm border-top"><button class="inline" id="ris-button-close">close</button></div></div></dialog><dialog id="ris-dialog-map"><button class="ris-close-dialog" id="ris-button-close-top-map"></button><div class="ris-column stretch-h"><div id="header-compare"></div><div id="content-map"></div><div class="flex align-c align-m p-sm border-top"><button class="inline" id="ris-button-close">close</button></div></div></dialog><div class="flex gap align-c align-m sticky-bottom fixed hiding" id="ris-compare-container"><ul class="items flex align-c align-m" id="ris-compare-items"></ul><button id="ris-button-compare">click to compare</button><div><small>(max. 2 )</small></div></div>`;
+<div id="ris-form"> <h3>Search for transportation programs</h3> <div class="flex gap align-c align-m p-sm"> <input type="text" id="ris-zipcode" placeholder="enter zip code"> <span>or</span> <select id="ris-state" aria-label="State"> <option value="">... select state</option> <option value="AL">Alabama</option> <option value="AK">Alaska</option> <option value="AZ">Arizona</option> <option value="AR">Arkansas</option> <option value="CA">California</option> <option value="CO">Colorado</option> <option value="CT">Connecticut</option> <option value="DE">Delaware</option> <option value="DC">District Of Columbia</option> <option value="FL">Florida</option> <option value="GA">Georgia</option> <option value="HI">Hawaii</option> <option value="ID">Idaho</option> <option value="IL">Illinois</option> <option value="IN">Indiana</option> <option value="IA">Iowa</option> <option value="KS">Kansas</option> <option value="KY">Kentucky</option> <option value="LA">Louisiana</option> <option value="ME">Maine</option> <option value="MD">Maryland</option> <option value="MA">Massachusetts</option> <option value="MI">Michigan</option> <option value="MN">Minnesota</option> <option value="MS">Mississippi</option> <option value="MO">Missouri</option> <option value="MT">Montana</option> <option value="NE">Nebraska</option> <option value="NV">Nevada</option> <option value="NH">New Hampshire</option> <option value="NJ">New Jersey</option> <option value="NM">New Mexico</option> <option value="NY">New York</option> <option value="NC">North Carolina</option> <option value="ND">North Dakota</option> <option value="OH">Ohio</option> <option value="OK">Oklahoma</option> <option value="OR">Oregon</option> <option value="PA">Pennsylvania</option> <option value="RI">Rhode Island</option> <option value="SC">South Carolina</option> <option value="SD">South Dakota</option> <option value="TN">Tennessee</option> <option value="TX">Texas</option> <option value="UT">Utah</option> <option value="VT">Vermont</option> <option value="VA">Virginia</option> <option value="WA">Washington</option> <option value="WV">West Virginia</option> <option value="WI">Wisconsin</option> <option value="WY">Wyoming</option> </select> <span>and</span> <select id="ris-county" aria-label="County"> <option value="">... select county</option> </select> <button id="ris-list-programs" class="disabled">Search</button> </div> <!--<details class="p-sm options"> <summary class="flex align-c"></summary> </details>--> <div class="flex gap align-c align-m p-sm"> <label class="flex align-m"><input type="radio" name="options" value="all" id="options-any" checked><span>show all</span></label> <label class="flex align-m"><input type="radio" name="options" value="free" id="options-free"><span>free services</span></label> <!--<label class="flex align-m"><input type="radio" name="options" value="nonprofit" id="options-nonprofit"><span>nonprofit organizations</span></label>--> <label class="flex align-m"><input type="radio" name="options" value="wheelchair" id="options-wheelchair"><span>wheelchair accesible vehicles</span></label> </div></div><div id="ris-progress"></div><div id="ris-results"></div><dialog id="ris-dialog-compare"><button class="ris-close-dialog" id="ris-button-close-top" onclick="this.closest('dialog').close();"></button><div class="ris-column stretch-h"><div id="header-compare"></div><div class="scrollable stretch-w stretch-h" id="content-compare"></div><div class="flex align-c align-m p-sm border-top"><button class="inline" id="ris-button-close">close</button></div></div></dialog><dialog id="ris-dialog-map"><button class="ris-close-dialog" id="ris-button-close-top-map"></button><div class="ris-column stretch-h"><div id="header-compare"></div><div id="content-map"></div><div class="flex align-c align-m p-sm border-top"><button class="inline" id="ris-button-close">close</button></div></div></dialog><div class="flex gap align-c align-m sticky-bottom fixed hiding" id="ris-compare-container"><ul class="items flex align-c align-m" id="ris-compare-items"></ul><button id="ris-button-compare">click to compare</button><div><small>(max. 2 )</small></div></div>`;
 // const CSS_DEFAULT = `
 // <style>
 
@@ -134,7 +134,7 @@ const JS_WIDGET = `; (function (window, document) {
 
         const svgWheelchair = '<?xml version="1.0" ?><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M496.101 385.669l14.227 28.663c3.929 7.915.697 17.516-7.218 21.445l-65.465 32.886c-16.049 7.967-35.556 1.194-43.189-15.055L331.679 320H192c-15.925 0-29.426-11.71-31.679-27.475C126.433 55.308 128.38 70.044 128 64c0-36.358 30.318-65.635 67.052-63.929 33.271 1.545 60.048 28.905 60.925 62.201.868 32.933-23.152 60.423-54.608 65.039l4.67 32.69H336c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16H215.182l4.572 32H352a32 32 0 0 1 28.962 18.392L438.477 396.8l36.178-18.349c7.915-3.929 17.517-.697 21.446 7.218zM311.358 352h-24.506c-7.788 54.204-54.528 96-110.852 96-61.757 0-112-50.243-112-112 0-41.505 22.694-77.809 56.324-97.156-3.712-25.965-6.844-47.86-9.488-66.333C45.956 198.464 0 261.963 0 336c0 97.047 78.953 176 176 176 71.87 0 133.806-43.308 161.11-105.192L311.358 352z"/></svg>';
 
-        const mapValues = (fields, labels) => {
+        const mapValues = (fields, labels, joint = ', ') => {
             let captions = [];
             if (fields.length == labels.length) {
                 for (i = 0; i < fields.length; i++) {
@@ -144,7 +144,7 @@ const JS_WIDGET = `; (function (window, document) {
 
                 }
             };
-            return captions.join(', ');
+            return captions.join(joint);
         };
 
         const processField = (name, program) => {
@@ -162,12 +162,8 @@ const JS_WIDGET = `; (function (window, document) {
                     return \`<div>\${(program?.street_address && program?.street_address.toLowerCase() != 'n/a') ? program?.street_address + ', ' : ''}\${(program?.street_address_second) ? program?.street_address_second + ', ' : ''}\${program.city ? program.city + ', ' : ''}\${program.state ? program.state + ' ' : ''}\${program.zip}</div>\`;
                 },
                 'website': (program) => {
-                    return \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong>&nbsp;&nbsp;<!--<button class="inline" class="">Display service area on map</button>--></div>\`;
+                    return \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong><!--&nbsp;&nbsp;<button class="inline" class="" onclick="showMap([\${program.service_area_zipcodes.join(',')}])">Display service area on map</button>--></div>\`;
                 },
-                // 'eligibility-to-ride': (program) => {
-                //     let label =  mapValues([program.eligibility_disabled, program.eligibility_blindness, program.eligibility_illness, program.eligibility_public, program?.eligibility_membership, program?.eligibility_means, program?.eligibility_seniors, program?.eligibility_native_american], ['Disabled', 'Visually impaired', 'Illness', 'Public', 'Membership required', 'Income requirements', 'Seniors', 'Native American']);
-                //     return (label.length > 0) ? label : '-';
-                // },
                 'special-requirements-for-service': (program) => {
                     return (program?.special_requirements) ? program.special_requirements : '';
                 },
@@ -188,11 +184,11 @@ const JS_WIDGET = `; (function (window, document) {
                     }
                 },
                 'days-and-times-available': (program) => {
-                    let label = mapValues([program.days_available_monday, program.days_available_tuesday, program.days_available_wednesday, program.days_available_thursday, program.days_available_friday, program.days_available_saturday, program.days_available_sunday], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+                    let label = mapValues([program.days_available_monday, program.days_available_tuesday, program.days_available_wednesday, program.days_available_thursday, program.days_available_friday, program.days_available_saturday, program.days_available_sunday], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], '<br>');
                     return (label.length > 0) ? label : '-';
                 },
-                'hours-of-operation': (program) => {
-                    return program?.hours_of_operation ? program.hours_of_operation : '-';
+                'days-available-notes': (program) => {
+                    return program?.days_available_notes ? program.days_available_notes : '-';
                 },
                 'type-of-transportation': (program) => {
                     return mapValues([program.transportation_door_to_door, program.transportation_curb_to_curb, program.transportation_shared, program.transportation_private, program.transportation_fixed, program.transportation_paratransit], ['Door to door', 'Curb to curb', 'Shared rides', 'Private', 'Fixed route', 'Paratransit']);
@@ -234,6 +230,26 @@ const JS_WIDGET = `; (function (window, document) {
                 'languages-spoken': (program) => {
                     let label = mapValues([program.languages_spoken_english, program.languages_spoken_spanish, program.languages_spoken_chinese, program.languages_spoken_tagalog, program.languages_spoken_vietnamese, program.languages_spoken_french, program.languages_spoken_korean, program.languages_spoken_russian, program.languages_spoken_portuguese], ['English', 'Spanish', 'Chinese', 'Tagalog', 'Vietnamese', 'French', 'Korean', 'Russian', 'Portuguese']);
                     return (label.length > 0) ? label : 'English';
+                },
+                'training-offered': (program) => {
+                    let label = mapValues([program.training_offered], ['Yes']);
+                    return (label.length > 0) ? label : '-';
+                },
+                'weekend-service': (program) => {
+                    let label = mapValues([program.weekend_service_available], ['Yes']);
+                    return (label.length > 0) ? label : '-';
+                },
+                'evening-service': (program) => {
+                    let label = mapValues([program.evening_service_available], ['Yes']);
+                    return (label.length > 0) ? label : '-';
+                },
+                'driver-type': (program) => {
+                    let label = mapValues([program.driver_type_mix, program.driver_type_paid, program.driver_type_volunteers], ['Mix', 'Paid', 'Volunteers']);
+                    return (label.length > 0) ? label : '-';
+                },
+                'provider-type': (program) => {
+                    let label = mapValues([program.provider_type_home_care, program.provider_type_non_emergency_medical, program.provider_type_nonprofit, program.provider_type_other, program.provider_type_paratransit, program.provider_type_private, program.provider_type_public, program.provider_type_rideshare, program.provider_type_senior_center], ['Home care', 'Non-emergency medical', 'Nonprofit', 'Other', 'Paratransit', 'Private', 'Public', 'Rideshare', 'Seniorcenter']);
+                    return (label.length > 0) ? label : '-';
                 },
             };
 
@@ -285,6 +301,10 @@ const JS_WIDGET = `; (function (window, document) {
                         <li class="px-sm border-left"><div class="pt-sm"><strong>ELIGIBILITY TO RIDE</strong></div>\${processField('eligibility', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
+                        <li class="px-sm"><div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', programRight)}</li>
+                    </ul>
+                    <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>ASSISTANCE AVAILABLE</strong></div>\${processField('assistance-available', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>ASSISTANCE AVAILABLE</strong></div>\${processField('assistance-available', programRight)}</li>
                     </ul>
@@ -296,17 +316,18 @@ const JS_WIDGET = `; (function (window, document) {
                         <li class="px-sm"><div class="pt-sm"><strong>PRICING STRUCTURE DETAILS</strong></div>\${processField('pricing-details', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>PRICING STRUCTURE DETAILS</strong></div>\${processField('pricing-details', programRight)}</li>
                     </ul>
+
                     <ul class="ris-columns">
-                        <li class="px-sm"><div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', programLeft)}</li>
-                        <li class="px-sm border-left"><div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', programRight)}</li>
+                        <li class="px-sm"><div class="pt-sm"><strong>DAYS AVAILABLE</strong></div>\${processField('days-and-times-available', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>DAYS AVAILABLE</strong></div>\${processField('days-and-times-available', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
-                        <li class="px-sm"><div class="pt-sm"><strong>DAYS AND TIMES AVAILABLE</strong></div>\${processField('days-and-times-available', programLeft)}</li>
-                        <li class="px-sm border-left"><div class="pt-sm"><strong>DAYS AND TIMES AVAILABLE</strong></div>\${processField('days-and-times-available', programRight)}</li>
+                        <li class="px-sm"><div class="pt-sm"><strong>NOTES</strong></div>\${processField('days-available-notes', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>NOTES</strong></div>\${processField('days-available-notes', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
-                        <li class="px-sm">\${processField('hours-of-operation', programLeft)}</li>
-                        <li class="px-sm border-left">\${processField('hours-of-operation', programRight)}</li>
+                        <li class="px-sm">\${processField('days-available-notes', programLeft)}</li>
+                        <li class="px-sm border-left">\${processField('days-available-notes', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>SPECIAL REQUIREMENTS FOR SERVICE</strong></div>\${processField('special-requirements-for-service', programLeft)}</li>
@@ -316,7 +337,6 @@ const JS_WIDGET = `; (function (window, document) {
                         <li class="px-sm"><div class="pt-sm"><strong>TYPE OF TRANSPORTATION</strong></div>\${processField('type-of-transportation', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>TYPE OF TRANSPORTATION</strong></div>\${processField('type-of-transportation', programRight)}</li>
                     </ul>
-
                     <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>VEHICLES USED</strong></div>\${processField('vehicles-used', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>VEHICLES USED</strong></div>\${processField('vehicles-used', programRight)}</li>
@@ -324,10 +344,6 @@ const JS_WIDGET = `; (function (window, document) {
                     <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>PRICING</strong></div>\${processField('pricing', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>PRICING</strong></div>\${processField('pricing', programRight)}</li>
-                    </ul>
-                    <ul class="ris-columns">
-                        <li class="px-sm"><div class="pt-sm"><strong>ELIGIBILITY</strong></div>\${processField('eligibility', programLeft)}</li>
-                        <li class="px-sm border-left"><div class="pt-sm"><strong>ELIGIBILITY</strong></div>\${processField('eligibility', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>SCHEDULING OPTIONS</strong></div>\${processField('scheduling-options', programLeft)}</li>
@@ -350,6 +366,22 @@ const JS_WIDGET = `; (function (window, document) {
                         <li class="px-sm border-left"><div class="pt-sm"><strong>LONG-DISTANCE RIDES</strong></div>\${processField('long-distance-rides', programRight)}</li>
                     </ul>
                     <ul class="ris-columns">
+                        <li class="px-sm"><div class="pt-sm"><strong>MOBILITY TRAINING OFFERED</strong></div>\${processField('training-offered', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>MOBILITY TRAINING OFFERED</strong></div>\${processField('training-offered', programRight)}</li>
+                    </ul>
+                    <ul class="ris-columns">
+                        <li class="px-sm"><div class="pt-sm"><strong>WEEKEND SERVICE</strong></div>\${processField('weekend-service', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>WEEKEND SERVICE</strong></div>\${processField('weekend-service', programRight)}</li>
+                    </ul>
+                    <ul class="ris-columns">
+                        <li class="px-sm"><div class="pt-sm"><strong>EVENING SERVICE</strong></div>\${processField('evening-service', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>EVENING SERVICE</strong></div>\${processField('evening-service', programRight)}</li>
+                    </ul>
+                    <ul class="ris-columns">
+                        <li class="px-sm"><div class="pt-sm"><strong>DRIVER TYPE</strong></div>\${processField('driver-type', programLeft)}</li>
+                        <li class="px-sm border-left"><div class="pt-sm"><strong>DRIVER TYPE</strong></div>\${processField('driver-type', programRight)}</li>
+                    </ul>
+                    <ul class="ris-columns">
                         <li class="px-sm"><div class="pt-sm"><strong>LANGUAGES SPOKEN</strong></div>\${processField('languages-spoken', programLeft)}</li>
                         <li class="px-sm border-left"><div class="pt-sm"><strong>LANGUAGES SPOKEN</strong></div>\${processField('languages-spoken', programRight)}</li>
                     </ul>
@@ -364,11 +396,11 @@ const JS_WIDGET = `; (function (window, document) {
         };
         // dialog
         let dialogCompare = document.getElementById('ris-dialog-compare');
-        let buttonClose = document.getElementById('ris-button-close');
-        let buttonCloseTop = document.getElementById('ris-button-close-top');
-        buttonClose.onclick = buttonCloseTop.onclick = function () {
-            dialogCompare.close();
-        };
+        // let buttonClose = document.getElementById('ris-button-close');
+        // let buttonCloseTop = document.getElementById('ris-button-close-top');
+        // buttonClose.onclick = buttonCloseTop.onclick = function () {
+        //     dialogCompare.close();
+        // };
         // dialogCompare.showModal();
         const renderCompareItems = (programs) => {
             let containerItemsCompare = document.getElementById('ris-compare-container');
@@ -455,7 +487,7 @@ const JS_WIDGET = `; (function (window, document) {
 
                 const params = new URLSearchParams(options);
                 const query = params.toString(); // Output: foo=1&bar=2
-                const url = \`https://api.ridesinsight.org/api/programs?\${query}\`;
+                const url = \`http://localhost:3000/api/programs?\${query}\&key=API_KEY\`;
                 console.log('url', url);
                 busy();
 
@@ -487,10 +519,10 @@ const JS_WIDGET = `; (function (window, document) {
                             <a href="https://ris.pageuptoday.com/suggest-provider-update/" class="button-suggest" target="blank">Suggest an update</a>
                             \${processField('program', program)}
                             <div class="pt-sm">
-                                \${processField('phone', program)}
                                 \${processField('address', program)}                                    
                                 <div><small>\${program?.driver_type_volunteers == 1 ? '<div>PROGRAM TYPE</div>Volunteer Transportation' : ''}</small></div>
-                                \${processField('website', program)}       
+                                \${processField('website', program)}   
+                                \${processField('phone', program)}    
                                 <div class="p-sm">\${program.service_area_description ? '<div class="pt-sm"><strong>AREAS SERVED</strong></div>' + program.service_area_description : ''}</div>
                             </div>
                             <hr>
@@ -498,16 +530,17 @@ const JS_WIDGET = `; (function (window, document) {
                             <ul class="ris-columns">
                                 <li class="p-sm">
                                     <div class="pt-sm"><strong>ELIGIBILITY TO RIDE</strong></div>\${processField('eligibility', program)}
+                                    <div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', program)}
                                     <div class="pt-sm"><strong>SPECIAL REQUIREMENTS FOR SERVICE</strong></div>\${processField('special-requirements-for-service', program)}
                                     <div class="pt-sm"><strong>ASSISTANCE AVAILABLE</strong></div>\${processField('assistance-available', program)}
                                     <div class="pt-sm"><strong>SCHEDULING</strong></div>\${processField('scheduling', program)}
                                     <div class="pt-sm"><strong>PRICING STRUCTURE DETAILS</strong></div>\${processField('pricing-details', program)}
                                 </li>
                                 <li class="p-sm">
-                                    <div class="pt-sm"><strong>ELIGIBLE TRIP PURPOSE(S)</strong></div>\${processField('eligible-trip-purposes', program)}
                                     <div class="pt-sm"><strong>DAYS AVAILABLE</strong></div>\${processField('days-and-times-available', program)}
-                                    <div class="pt-sm"><strong>TIMES AVAILABLE</strong></div>\${processField('hours-of-operation', program)}
+                                    <div class="pt-sm"><strong>NOTES</strong></div>\${processField('days-available-notes', program)}
                                     <div class="pt-sm"><strong>TYPE OF TRANSPORTATION</strong></div>\${processField('type-of-transportation', program)}
+                                    <div class="pt-sm"><strong>PROVIDER TYPE</strong></div>\${processField('provider-type', program)}
                                 </li>
                             </ul>
                             <details>
@@ -518,15 +551,18 @@ const JS_WIDGET = `; (function (window, document) {
                                     <li class="p-sm">
                                         <div class="pt-sm"><strong>VEHICLES USED</strong></div>\${processField('vehicles-used', program)}
                                         <div class="pt-sm"><strong>PRICING</strong></div>\${processField('pricing', program)}
-                                        <div class="pt-sm"><strong>ELIGIBILITY</strong></div>\${processField('eligibility', program)}
+                                        <div class="pt-sm"><strong>PAYMENT METHODS</strong></div>\${processField('payment', program)}
                                         <div class="pt-sm"><strong>SCHEDULING OPTIONS</strong></div>\${processField('scheduling-options', program)}
                                         <div class="pt-sm"><strong>LANGUAGES SPOKEN</strong></div>\${processField('languages-spoken', program)}
+                                        <div class="pt-sm"><strong>RATIONED RIDES</strong></div>\${processField('rationed-rides', program)}
                                     </li>
                                     <li class="p-sm">
                                         <div class="pt-sm"><strong>NON-TRANSPORTATION SERVICES</strong></div>\${processField('non-transportation-services', program)}
-                                        <div class="pt-sm"><strong>PAYMENT METHODS</strong></div>\${processField('payment', program)}
-                                        <div class="pt-sm"><strong>RATIONED RIDES</strong></div>\${processField('rationed-rides', program)}
                                         <div class="pt-sm"><strong>LONG-DISTANCE RIDES</strong></div>\${processField('long-distance-rides', program)}
+                                        <div class="pt-sm"><strong>MOBILITY TRAINING OFFERED</strong></div>\${processField('training-offered', program)}
+                                        <div class="pt-sm"><strong>WEEKEND SERVICE</strong></div>\${processField('weekend-service', program)}
+                                        <div class="pt-sm"><strong>EVENING SERVICE</strong></div>\${processField('evening-service', program)}
+                                        <div class="pt-sm"><strong>DRIVER TYPE</strong></div>\${processField('driver-type', program)}
                                     </li>
                                 </ul>
                             </div>
@@ -593,6 +629,17 @@ const JS_WIDGET = `; (function (window, document) {
                 }
             };
             html2pdf().set(opt).from(printable(elementPrint)).save();
+        };
+
+        const showMap = (zipcodes) => {
+
+        };
+
+        const addScrip = (url) => {
+            var script = document.createElement('script');
+            script.type = 'application/javascript';
+            script.src = url;
+            document.head.appendChild(script);
         };
     } else {
         console.log('cannot load RIS widget');

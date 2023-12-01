@@ -8,10 +8,10 @@ let options = {};
 if (process.env.ENVIRONMENT == 'local') {
     options = {
         "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-            }
+            // "ssl": {
+            //     "require": false,
+            //     "rejectUnauthorized": false
+            // }
         }
     };
 }
