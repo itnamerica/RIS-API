@@ -29,8 +29,8 @@ const authenticate = (request, response, done) => {
     // let domain = origin[0];
 
     // Retrieve the Host header from the request
-    const host = request.headers.host;
-    const domain = host.split(':')[0];
+    const referer = request.headers.referer;
+    const domain = referer ? new URL(referer).hostname : '';
 
     // https://blog.logrocket.com/understanding-api-key-authentication-node-js/
 
@@ -41,7 +41,7 @@ const authenticate = (request, response, done) => {
             response.status(401).send('invalid key');
         } else {
             jwt.verify(keyAPI, API_SECRET_READ, (error, payload) => {
-                console.log('authenticateKey', payload, domain);
+                console.log('authenticateKey payload, domain, request.headers', payload, domain, request.headers);
                 if (error) {
                     response.status(401).send(error);
                 }
