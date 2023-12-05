@@ -110,22 +110,15 @@ const get = async (request) => {
     }
 };
 
-const add = async (request) => {
+const add = async (request, response) => {
+    response.header("Access-Control-Allow-Origin", "ridesinsight.org");
+    // response.header("Access-Control-Allow-Methods", "POST");
     try {
-        const { name, email } = request.body;
+        console.clear();
         console.log('request.body', request.body);
-        console.log('name', name);
-        // return true;
-
-        const result = await prisma.profile.create({
-            data: {
-                name,
-                email
-            }
-        });
-        return result;
+        return response.status(200).send({ success: true });
     } catch (err) {
-        throw boom.boomify(err);
+        return response.status(500).send({ error: `program fetch failed! ${err}` });
     }
 };
 

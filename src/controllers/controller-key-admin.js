@@ -25,15 +25,15 @@ const generate = (request, response) => {
 };
 
 const authenticate = (request, response, done) => {
-    let origin = request.hostname.split(':');
-    let domain = origin[0];
+    // response.header("Access-Control-Allow-Origin", "*");
+    // response.header("Access-Control-Allow-Methods", "POST");
 
-    // https://blog.logrocket.com/understanding-api-key-authentication-node-js/
+    let keyAPI = request.query["key"];
+    console.clear();
+    console.log('request.body', keyAPI);
 
-    let keyAPI = request.query["key"]; //Add API key to headers
     try {
         if (!keyAPI) {
-            console.log(`invalid key, origin: ${origin}`);
             response.status(401).send('invalid key');
         } else {
             jwt.verify(keyAPI, API_SECRET_ADMIN, (error, payload) => {
@@ -41,11 +41,6 @@ const authenticate = (request, response, done) => {
                 if (error) {
                     response.status(401).send(error);
                 }
-
-                if (domain != payload.domain) {
-                    response.status(401).send('invalid key');
-                }
-
                 done();
             });
         }
