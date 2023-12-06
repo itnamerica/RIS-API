@@ -5,14 +5,11 @@
     headers.append("Content-Type", "application/json");
 
     const redirect = () => {
-        window.location.href = '/?message=your session has expired';
+        window.location.href = '/admin?message=your session has expired';
     };
 
     const requestOptions = {
-        method: 'GET',
-        // headers: headers,
-        // // body: body,
-        // // redirect: 'follow'
+        method: 'GET'
     };
 
     fetch(URL_PROFILE, requestOptions).then(response => {

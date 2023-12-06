@@ -7,7 +7,7 @@
 
 const fastify = require('fastify')({
 	ignoreTrailingSlash: true,
-	// logger: true
+	logger: true
 });
 
 // https://github.com/fastify/fastify-static
@@ -30,7 +30,7 @@ const configSession = {
 	cookieName: 'webfix-session',
 	cookie: {
 		path: '/',
-		maxAge: parseInt(process.env.COOKIE_MAX_AGE)
+		maxAge: 300
 	}
 };
 
@@ -41,6 +41,8 @@ fastify.register(fastifyStatic, {
 	// prefix: '/public/', // optional: default '/'
 	// constraints: { host: 'example.com' } // optional: default {}
 });
+
+// fastify.register(require('@fastify/formbody'));
 
 if (process.env.NODE_ENV === 'production') {
 	configSession.cookie.secure = true; // serve secure cookies

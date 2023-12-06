@@ -3,8 +3,8 @@
 // import controllerUser from './controllers/controller-user.js';
 // import controllerWidget from './controllers/controller-widget.js';
 
-const controllerKeyRO = require('./controllers/controller-key-read');
-const controllerKeyAdmin = require('./controllers/controller-key-admin');
+const controllerKey = require('./controllers/controller-key');
+// const controllerKeyAdmin = require('./controllers/controller-key-admin');
 const controllerProgram = require('./controllers/controller-program');
 const controllerUser = require('./controllers/controller-user');
 const controllerWidget = require('./controllers/controller-widget');
@@ -13,50 +13,50 @@ const routesProgram = [
     {
         method: 'GET',
         url: '/api/programs',
-        preHandler: controllerKeyRO.authenticate,
+        preHandler: controllerKey.authenticateClient,
         handler: controllerProgram.list
     },
-    {
-        method: 'GET',
-        url: '/api/programs/:id',
-        handler: controllerProgram.get
-    },
+    // {
+    //     method: 'GET',
+    //     url: '/api/programs/:id',
+    //     handler: controllerProgram.get
+    // },
     {
         method: 'POST',
         url: '/api/programs',
-        handler: controllerProgram.add
-    },
-    {
-        method: 'PUT',
-        url: '/api/programs/:id',
+        preHandler: controllerKey.authenticateAdmin,
         handler: controllerProgram.update
     },
-    {
-        method: 'DELETE',
-        url: '/api/programs/:id',
-        handler: controllerProgram.remove
-    }
+    // {
+    //     method: 'PUT',
+    //     url: '/api/programs/:id',
+    //     handler: controllerProgram.update
+    // },
+    // {
+    //     method: 'DELETE',
+    //     url: '/api/programs/:id',
+    //     handler: controllerProgram.remove
+    // }
 ];
 
 const routesKey = [
     {
         method: 'GET',
         url: '/api/keys',
-        // preHandler: controllerKeyAdmin.authenticate,
-        // preHandler: controllerUser.authenticate,
-        handler: controllerKeyRO.generate,
+        preHandler: controllerUser.authenticateAdmin,
+        handler: controllerKey.generate,
     }
 ];
 
-const routesKeyAdmin = [
-    {
-        method: 'GET',
-        url: '/api/keys-admin/',
-        // preHandler: controllerKeyAdmin.authenticate,
-        // preHandler: controllerUser.authenticate,
-        handler: controllerKeyRO.generate,
-    }
-];
+// const routesKeyAdmin = [
+//     {
+//         method: 'GET',
+//         url: '/api/keys-admin/',
+//         // preHandler: controllerKeyAdmin.authenticateClient,
+//         // preHandler: controllerUser.authenticateClient,
+//         handler: controllerKey.generate,
+//     }
+// ];
 
 const routesUser = [
     {
@@ -87,21 +87,21 @@ const routesUser = [
         method: ['GET', 'HEAD'],
         url: '/session',
         logLevel: 'warn',
-        // preHandler: controllerUser.authenticate,
+        // preHandler: controllerUser.authenticateClient,
         handler: controllerUser.session
     },
     {
         method: ['GET', 'HEAD'],
         url: '/profile',
         logLevel: 'warn',
-        preHandler: controllerUser.authenticate,
+        preHandler: controllerUser.authenticateClient,
         handler: controllerUser.profile
     },
     {
         method: ['GET', 'HEAD'],
         url: '/signout',
         logLevel: 'warn',
-        preHandler: controllerUser.authenticate,
+        preHandler: controllerUser.authenticateClient,
         handler: controllerUser.signout
     }
 ];
@@ -110,14 +110,14 @@ const routesWidget = [
     {
         method: 'GET',
         url: '/api/widget',
-        preHandler: controllerKeyRO.authenticate,
+        preHandler: controllerKey.authenticateClient,
         handler: controllerWidget.get,
     }
 ];
 
 // export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
-module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget, ...routesKeyAdmin];
+module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 // module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget]; //, ...routesKeyAdmin
 
 // Error: Resource not found on the server

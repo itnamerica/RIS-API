@@ -110,45 +110,66 @@ const get = async (request) => {
     }
 };
 
-const add = async (request, response) => {
-    response.header("Access-Control-Allow-Origin", "ridesinsight.org");
-    // response.header("Access-Control-Allow-Methods", "POST");
+const update = async (request, response) => {
+    const { id, mode, ...dataProgram } = JSON.parse(request.body);
+    // let dataProgram=
+    console.log('dataProgram', dataProgram, id, mode);
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Methods", "POST");
     try {
-        console.clear();
-        console.log('request.body', request.body);
+        if (0 + id > 0) {               // update;
+            const program = await models.transportation_programs.findByPk(id);
+            if (program) {
+                console.log('program updated', program);
+                await program.update(dataProgram);
+            }
+        } else {                        //insert
+            if (mode == 'add') {
+                try {
+                    dataProgram.created_by = 'RIS';
+                    const program = await models.transportation_programs.create(dataProgram);
+                    console.log('program created:', program);
+                } catch (error) {
+                    console.error('error creating program:', error);
+                    return response.status(500).send({ error: `error creating program! ${err}` });
+                }
+
+            }
+        }
+
         return response.status(200).send({ success: true });
     } catch (err) {
-        return response.status(500).send({ error: `program fetch failed! ${err}` });
+        return response.status(500).send({ error: `error creating program! ${err}` });
     }
 };
 
-const update = async (request) => {
-    const { name } = request.body;
-    try {
-        const result = await prisma.profile.create({
-            data: {
-                name
-            },
-        });
-        return result;
-    } catch (err) {
-        throw boom.boomify(err);
-    }
-};
+// const update = async (request) => {
+//     const { name } = request.body;
+//     try {
+//         const result = await prisma.profile.create({
+//             data: {
+//                 name
+//             },
+//         });
+//         return result;
+//     } catch (err) {
+//         throw boom.boomify(err);
+//     }
+// };
 
-const remove = async (request) => {
-    const { id } = request.params;
-    try {
-        const profile = await prisma.profile.delete({
-            where: {
-                id: Number(id),
-            },
-        });
-        return profile;
-    } catch (err) {
-        throw boom.boomify(err);
-    }
-};
+// const remove = async (request) => {
+//     const { id } = request.params;
+//     try {
+//         const profile = await prisma.profile.delete({
+//             where: {
+//                 id: Number(id),
+//             },
+//         });
+//         return profile;
+//     } catch (err) {
+//         throw boom.boomify(err);
+//     }
+// };
 
 // export default { list, get, add, update, remove };
-module.exports = { list, get, add, update, remove };
+module.exports = { list, get, update };

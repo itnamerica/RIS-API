@@ -2,16 +2,17 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     </link>
-    <script src="./js/sb.min.js"></script>
+    <!-- <script src="./js/sb.min.js"></script> -->
 </head>
 <body>
     <main>
         <h1 id="message">Welcome, </h1>
         <div class="container">
-            <div id="demo">
-
+            <div>
+                <input type="text" id="email" placeholder="email" value="dragosdoes@gmail.com">
+                <input type="password" id="password" placeholder="password" value="Dragos100%COOL!">
             </div>
-            <input type="button" value="sign in" onclick="login()">
+            <button type="button" id="button-login">Sign in</button>
         </div>
     </main>
 </body>
@@ -21,36 +22,36 @@
     const message = urlParams.get('message');
     document.getElementById('message').innerText = message;
 </script>
-<script src="./js/index.js"></script>
+<!-- <script src="./js/index.js"></script> -->
 <script>
-    function login() {
+    let buttonLogin = document.getElementById('button-login');
+    buttonLogin.onclick = async () => {
+        console.log('onclick');
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        // headers.append("Cookie", "language=en-US; this.sid=s%3AlMz9_IqNigWOcbLq6OWOHxmYUxjQdJE5.2Bv5XcB0Boc6lQgXgmosUdwcSJtWN3l3J%2FJLF9qPDUo");
 
         const body = JSON.stringify({
-            "email": "",
-            "password": ""
+            "email": email,
+            "password": password
         });
 
         const requestOptions = {
             method: 'POST',
             headers: headers,
-            body: body,
-            // redirect: 'follow'
+            body: body
         };
 
-        fetch("/signin", requestOptions).then(response => response.text()).then(result => {
-            console.log('result', result, JSON.parse(result));
-            const { success, user } = JSON.parse(result);
-            console.log('{ success, user }', success, user);
+        try {
+            const response = await fetch("/signin", requestOptions);
+            const { success, user } = await response.json();
             if (success == true && user) {
                 window.location.href = '/dashboard';
             }
-        }).catch(error => {
+        } catch (error) {
             console.log('error', error);
-
-        });
+        }
     }
 </script>
 </html>

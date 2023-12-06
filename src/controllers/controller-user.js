@@ -48,6 +48,15 @@ const signup = async (request, response) => {
 };
 
 const signin = async (request, response) => {
+    const referer = request.headers.referer;
+    const domain = referer ? new URL(referer).hostname : '';
+
+    console.log('domain', domain);
+
+    if (domain == 'ridesinsight.org' || domain == 'localhost') {
+        response.header("Access-Control-Allow-Origin", "*");
+    }
+
     try {
         const { email, password } = request.body;
         const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
@@ -56,11 +65,13 @@ const signin = async (request, response) => {
         const ADMIN_EMAIL_RIS = process.env.ADMIN_EMAIL_RIS;
         const ADMIN_PW_RIS = process.env.ADMIN_PW_RIS;
 
+        console.log('ADMIN_EMAIL', ADMIN_EMAIL, ADMIN_PW, email, password, request.body);
+
         if ((email === ADMIN_EMAIL && password === ADMIN_PW) || (email === ADMIN_EMAIL_RIS && password === ADMIN_PW_RIS)) {
             let user = { name: 'Admin' };
             request.session.set('user', user);
             console.log('user', user);
-            response.status(200).send({ success: true, user });
+            return response.status(200).send({ success: true, user });
         } else {
             return response.status(401).send({ error: 'Invalid credentials' });
         }
@@ -72,6 +83,7 @@ const signin = async (request, response) => {
 
 const profile = async (request, response) => {
     response.status(200).send({
+        success: true,
         user: request.session.get('user'),
         response: response.getResponseTime()
     });
