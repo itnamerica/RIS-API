@@ -50,9 +50,9 @@ if (process.env.NODE_ENV === 'production') {
 	configSession.cookie.sameSite = 'strict'; // serve cookies only from site
 
 	fastify.register(fastifyStatic, {
-		root: '/kml', // path.join(__dirname, '/kml'),
+		root: '/api-data', // path.join(__dirname, '/kml'),
 		serveDotFiles: true,
-		prefix: '/kml/', // this is the URL prefix
+		prefix: '/api-data/', // this is the URL prefix
 		decorateReply: false
 	});
 }
