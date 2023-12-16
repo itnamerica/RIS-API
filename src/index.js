@@ -53,7 +53,16 @@ if (process.env.NODE_ENV === 'production') {
 		root: '/api-data', // path.join(__dirname, '/kml'),
 		serveDotFiles: true,
 		prefix: '/api-data/', // this is the URL prefix
-		decorateReply: false
+		decorateReply: false,
+		setHeaders: (res, pathName) => {
+			res.setHeader("Access-Control-Allow-Origin", "*");
+			// const relativePath = pathName.replace(PUBLIC_DIR, "");
+			// if (relativePath.startsWith("/build/")) {
+			//   res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+			// } else {
+			//   res.setHeader("Cache-Control", "public, max-age=3600");
+			// }
+		},
 	});
 }
 fastify.register(secureSession, configSession);
