@@ -637,7 +637,10 @@ const JS_WIDGET = `; (function (window, document) {
                     orientation: 'portrait'
                 }
             };
-            html2pdf().set(opt).from(elementPrint).save();
+            html2pdf().set(opt).from(elementPrint).save().then(function () {
+                console.log('done!');
+                elementPrint.innerHTML = '';
+            });
         };
 
         const showMap = (zipcodes) => {
