@@ -6,6 +6,7 @@
 const controllerKey = require('./controllers/controller-key');
 // const controllerKeyAdmin = require('./controllers/controller-key-admin');
 const controllerProgram = require('./controllers/controller-program');
+const controllerRecord = require('./controllers/controller-record');
 const controllerUser = require('./controllers/controller-user');
 const controllerWidget = require('./controllers/controller-widget');
 
@@ -16,27 +17,27 @@ const routesProgram = [
         preHandler: controllerKey.authenticateClient,
         handler: controllerProgram.list
     },
-    // {
-    //     method: 'GET',
-    //     url: '/api/programs/:id',
-    //     handler: controllerProgram.get
-    // },
     {
         method: 'POST',
         url: '/api/programs',
         preHandler: controllerKey.authenticateAdmin,
         handler: controllerProgram.update
+    }
+];
+
+const routesRecord = [
+    {
+        method: 'GET',
+        url: '/api/records',
+        preHandler: controllerKey.authenticateClient,
+        handler: controllerRecord.list
     },
-    // {
-    //     method: 'PUT',
-    //     url: '/api/programs/:id',
-    //     handler: controllerProgram.update
-    // },
-    // {
-    //     method: 'DELETE',
-    //     url: '/api/programs/:id',
-    //     handler: controllerProgram.remove
-    // }
+    {
+        method: 'POST',
+        url: '/api/records',
+        preHandler: controllerKey.authenticateAdmin,
+        handler: controllerRecord.update
+    }
 ];
 
 const routesKey = [
@@ -117,7 +118,7 @@ const routesWidget = [
 
 // export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
-module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
+module.exports = [...routesProgram, ...routesRecord, ...routesKey, ...routesUser, ...routesWidget];
 // module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget]; //, ...routesKeyAdmin
 
 // Error: Resource not found on the server
