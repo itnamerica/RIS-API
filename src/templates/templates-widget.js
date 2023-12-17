@@ -602,18 +602,6 @@ const JS_WIDGET = `; (function (window, document) {
             }
         };
 
-        const printable = (element) => {
-            let elementPrint = element.cloneNode(true);
-            elementPrint.classList.add('ris-printable', 'ris-widget');
-            for (const removable of elementPrint.querySelectorAll('svg,button,summary')) {
-                removable.remove();
-            }
-            for (const details of elementPrint.querySelectorAll('details')) {
-                details.setAttribute("open", "");
-            }
-            return elementPrint;
-        };
-
         const savePDF = () => {
             var elementResults = document.getElementById("ul-results");
             let elementPrint = document.getElementById("ris-print");
