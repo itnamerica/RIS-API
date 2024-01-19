@@ -120,7 +120,12 @@ const update = async (request, response) => {
             const program = await models.transportation_programs.findByPk(id);
             if (program) {
                 console.log('program updated', program);
-                await program.update(dataProgram);
+                try {
+                    await program.update(dataProgram);
+                } catch (error) {
+                    // Handle the error here
+                    console.error('Error during update:', error);
+                }
             }
         } else {                        //insert
             if (mode == 'add') {

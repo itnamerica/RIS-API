@@ -354,6 +354,9 @@ module.exports = function (sequelize, DataTypes) {
     long_distance_rides: {
       type: DataTypes.SMALLINT, allowNull: true
     },
+    provider_type_municipal: {
+      type: DataTypes.SMALLINT, allowNull: true
+    },
     provider_type_nonprofit: {
       type: DataTypes.SMALLINT, allowNull: true
     },
