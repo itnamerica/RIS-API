@@ -115,7 +115,6 @@ const JS_WIDGET = `; (function (window, document) {
         };
 
         const selectCompare = (id, name) => {
-            console.log('selectCompare');
             if (itemsCompare.length < 2) {
                 itemsCompare.push({ id, name });
                 renderCompareItems(programs);
@@ -128,6 +127,8 @@ const JS_WIDGET = `; (function (window, document) {
         };
 
         const svgWheelchair = '<?xml version="1.0" ?><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M496.101 385.669l14.227 28.663c3.929 7.915.697 17.516-7.218 21.445l-65.465 32.886c-16.049 7.967-35.556 1.194-43.189-15.055L331.679 320H192c-15.925 0-29.426-11.71-31.679-27.475C126.433 55.308 128.38 70.044 128 64c0-36.358 30.318-65.635 67.052-63.929 33.271 1.545 60.048 28.905 60.925 62.201.868 32.933-23.152 60.423-54.608 65.039l4.67 32.69H336c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16H215.182l4.572 32H352a32 32 0 0 1 28.962 18.392L438.477 396.8l36.178-18.349c7.915-3.929 17.517-.697 21.446 7.218zM311.358 352h-24.506c-7.788 54.204-54.528 96-110.852 96-61.757 0-112-50.243-112-112 0-41.505 22.694-77.809 56.324-97.156-3.712-25.965-6.844-47.86-9.488-66.333C45.956 198.464 0 261.963 0 336c0 97.047 78.953 176 176 176 71.87 0 133.806-43.308 161.11-105.192L311.358 352z"/></svg>';
+        
+        const svgBus = '<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="9112447_bus_solid_icon" transform="translate(-2, 0)" fill="#000000" fill-rule="nonzero"><path d="M12.2307692,0 C7.74774588,0 4.07692308,3.75162708 4.07692308,8.33333333 L4.07692308,18.75 L0,18.75 L0,25 L4.07692308,25 L4.07692308,47.9166667 C4.07692308,49.0641271 4.99263873,50 6.11538462,50 L12.2307692,50 L12.9314904,47.9166667 L40.0685096,47.9166667 L40.7692308,50 L46.8846154,50 C48.0073613,50 48.9230769,49.0641271 48.9230769,47.9166667 L48.9230769,25 L53,25 L53,18.75 L48.9230769,18.75 L48.9230769,8.33333333 C48.9230769,3.75162708 45.2522541,0 40.7692308,0 L12.2307692,0 Z M12.2307692,4.16666667 L40.7692308,4.16666667 C43.0465755,4.16666667 44.8461538,6.00586042 44.8461538,8.33333333 L8.15384615,8.33333333 C8.15384615,6.00586042 9.9534265,4.16666667 12.2307692,4.16666667 Z M8.15384615,12.5 L24.4615385,12.5 L24.4615385,27.0833333 L8.15384615,27.0833333 L8.15384615,12.5 Z M28.5384615,12.5 L44.8461538,12.5 L44.8461538,27.0833333 L28.5384615,27.0833333 L28.5384615,12.5 Z M8.15384615,31.25 L44.8461538,31.25 L44.8461538,43.75 L8.15384615,43.75 L8.15384615,31.25 Z M10.1923077,35.4166667 L10.1923077,39.5833333 L18.3461538,39.5833333 L18.3461538,35.4166667 L10.1923077,35.4166667 Z M34.6538462,35.4166667 L34.6538462,39.5833333 L42.8076923,39.5833333 L42.8076923,35.4166667 L34.6538462,35.4166667 Z" id="Shape"></path></g></g></svg>';
 
         const mapValues = (fields, labels, joint = ', ') => {
             let captions = [];
@@ -145,7 +146,7 @@ const JS_WIDGET = `; (function (window, document) {
         const processField = (name, program) => {
             const mapFields = {
                 'title': (program) => {
-                    return \`\${program.organization.length ? program.organization : '&nbsp;'}<div class="flex gap align-m spaced">\${program?.assistance_wheelchair == 0 ? svgWheelchair : ''}\${program?.provider_type_nonprofit == 1 ? '<div class="tag">NONPROFIT</div>' : ''}</div>\`;
+                    return \`\${program.organization.length ? program.organization : '&nbsp;'}<div class="flex gap align-m spaced">\${program.provider_type_paratransit == 1 ? svgBus : ''}\${program?.assistance_wheelchair == 0 ? svgWheelchair : ''}\${program?.provider_type_nonprofit == 1 ? '<div class="tag">NONPROFIT</div>' : ''}</div>\`;
                 },
                 'program': (program) => {
                     return \`\${program?.program ? '<div><strong>' + program.program + '</strong></div>' : ''}\`;
@@ -421,18 +422,13 @@ const JS_WIDGET = `; (function (window, document) {
                     buttonItemsCompare.style.display = "inline-block";
                     buttonItemsCompare.onclick = function () {
                         let programsCompare = [];
-                        console.log('programs', programs);
                         programs.forEach((program) => {
-                            console.log('program', program);
                             itemsCompare.forEach((itemCompare) => {
-                                console.log('itemCompare', itemCompare.id);
                                 if (program.transportation_program_id == itemCompare.id) {
                                     programsCompare.push(program);
                                 }
                             });
                         });
-
-                        console.log('programsCompare', programsCompare);
                         headerItemsCompare.innerHTML = buildCompareHeader(programsCompare);
                         contentItemsCompare.innerHTML = buildCompareHTML(programsCompare);
                         dialogCompare.showModal();
@@ -443,7 +439,6 @@ const JS_WIDGET = `; (function (window, document) {
                 }
                 //attach events
                 let buttonsRemove = listItemsCompare.querySelectorAll('div.ris-button-remove');
-                console.log('buttonsRemove', buttonsRemove);
                 [].forEach.call(buttonsRemove, (button) => {
                     button.onclick = function () {
                         removeCompare(button.dataset.id);
@@ -456,7 +451,6 @@ const JS_WIDGET = `; (function (window, document) {
 
         let listResults = document.getElementById('ris-results');
         buttonListPrograms.onclick = async function () {
-            console.log('ris list', argumentsURL);
             if (argumentsURL.zipcode || argumentsURL.county) {
                 listResults.innerHTML = \`<small class="flex align-c">searching ...</small>\`;
                 let options = {};
@@ -483,7 +477,6 @@ const JS_WIDGET = `; (function (window, document) {
                 const params = new URLSearchParams(options);
                 const query = params.toString(); // Output: foo=1&bar=2
                 const url = \`https://api.ridesinsight.org/api/programs?\${query}\&key=API_KEY\`;
-                console.log('url', url);
                 busy();
 
                 // let jsonData;
@@ -494,17 +487,14 @@ const JS_WIDGET = `; (function (window, document) {
                     if (error instanceof SyntaxError) {
                         free();
                         // Unexpected token <in JSON
-                        console.log('There was a SyntaxError', error);
                         listResults.innerHTML = \`<div class="flex align-c error border-top p-sm">error getting program data</div>\`;
                     } else {
                         free();
-                        console.log('There was an error', error);
                         listResults.innerHTML = \`<div class="flex align-c error border-top p-sm">error getting program data</div>\`;
                     }
                 }
 
                 if (programs?.length > 0) {
-                    console.log('programs', programs);
                     let htmlPrograms = \`<div class="flex align-c p-sm gap">\${programs.length} providers found <button id="button-print" class="inline">Download provider list (PDF)</button></div>
                         <ul class="ris-cards ris-column" id="ul-results">\`;
                     programs.forEach(program => {
@@ -568,7 +558,6 @@ const JS_WIDGET = `; (function (window, document) {
                     free();
                     //attach events
                     let buttonsSelect = listResults.querySelectorAll('button.ris-compare');
-                    console.log('buttonsSelect', buttonsSelect);
                     [].forEach.call(buttonsSelect, (button) => {
                         button.onclick = function () {
                             selectCompare(button.dataset.id, button.dataset.name);
@@ -620,7 +609,6 @@ const JS_WIDGET = `; (function (window, document) {
                 }
             };
             html2pdf().set(opt).from(elementPrint).save().then(function () {
-                console.log('done!');
                 elementPrint.innerHTML = '';
             });
         };
