@@ -90,6 +90,23 @@ const list = async (request, response) => {
             order: ['organization']
         });
 
+        records.sort((a, b) => {
+            // Nonprofit types come first
+            if (a.provider_type_nonprofit === 1 && b.provider_type_nonprofit !== 1) return -1;
+            if (b.provider_type_nonprofit === 1 && a.provider_type_nonprofit !== 1) return 1;
+
+            // Homecare types go last
+            if (a.provider_type_home_care === 1 && b.provider_type_home_care !== 1) return 1;
+            if (b.provider_type_home_care === 1 && a.provider_type_home_care !== 1) return -1;
+
+            // For types other than nonprofit and homecare, sort by name
+            if (a.provider_type_nonprofit !== 1 && a.provider_type_home_care !== 1 && b.provider_type_nonprofit !== 1 && b.provider_type_home_care !== 1) {
+                return a.organization.localeCompare(b.organization);
+            }
+
+            return 0; // In case of a tie, or if both are of type 'nonprofit' or 'homecare', maintain original order
+        });
+
         const programs = records.map(trimRecord);
         return response.status(200).send(programs);
     } catch (err) {
