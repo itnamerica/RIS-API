@@ -146,7 +146,7 @@ const JS_WIDGET = `; (function (window, document) {
         const processField = (name, program) => {
             const mapFields = {
                 'title': (program) => {
-                    return \`\${program.organization.length ? program.organization : '&nbsp;'}<div class="flex gap align-m spaced">\${program.transportation_paratransit == 1 ? svgBus : ''}\${program?.assistance_wheelchair == 0 ? svgWheelchair : ''}\${program?.provider_type_nonprofit == 1 ? '<div class="tag">NONPROFIT</div>' : ''}</div>\`;
+                    return \`\${program.organization.length ? program.organization : '&nbsp;'}<div class="flex gap align-m spaced">\${program.transportation_paratransit == 1 ? svgBus : ''}\${program?.assistance_wheelchair == 1 ? svgWheelchair : ''}\${program?.provider_type_nonprofit == 1 ? '<div class="tag">NONPROFIT</div>' : ''}</div>\`;
                 },
                 'program': (program) => {
                     return \`\${program?.program ? '<div><strong>' + program.program + '</strong></div>' : ''}\`;
