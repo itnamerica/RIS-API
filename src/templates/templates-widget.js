@@ -623,7 +623,7 @@ const JS_WIDGET = `; (function (window, document) {
             script.src = url;
             document.head.appendChild(script);
         };
-        addScript('https://api.ridesinsight.org/js/html2pdf.bundle.min.js');
+        addScript('https://api.ridesinsight.org/js/html3pdf.bundle.min.js');
     } else {
         console.log('cannot load RIS widget');
     }
