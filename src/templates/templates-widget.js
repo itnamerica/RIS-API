@@ -599,7 +599,7 @@ const JS_WIDGET = `; (function (window, document) {
                 margin: 1,
                 filename: 'ris-provider-list.pdf',
                 html2canvas: {
-                    scale: 1.5,
+                    scale: 1,
                     width: 1000
                 },
                 jsPDF: {
@@ -623,7 +623,7 @@ const JS_WIDGET = `; (function (window, document) {
             script.src = url;
             document.head.appendChild(script);
         };
-        addScript('https://api.ridesinsight.org/js/html3pdf.bundle.min.js');
+        addScript('https://api.ridesinsight.org/js/html2pdf.bundle.min.js');
     } else {
         console.log('cannot load RIS widget');
     }
