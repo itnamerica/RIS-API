@@ -7,6 +7,7 @@ const controllerKey = require('./controllers/controller-key');
 // const controllerKeyAdmin = require('./controllers/controller-key-admin');
 const controllerProgram = require('./controllers/controller-program');
 const controllerRecord = require('./controllers/controller-record');
+const controllerExport = require('./controllers/controller-export');
 const controllerUser = require('./controllers/controller-user');
 const controllerWidget = require('./controllers/controller-widget');
 
@@ -37,6 +38,15 @@ const routesRecord = [
         url: '/api/records',
         preHandler: controllerKey.authenticateAdmin,
         handler: controllerRecord.update
+    }
+];
+
+const routesExport = [
+    {
+        method: 'GET',
+        url: '/api/exports',
+        preHandler: controllerKey.authenticateAdmin,
+        handler: controllerExport.list
     }
 ];
 
@@ -118,7 +128,7 @@ const routesWidget = [
 
 // export default [...routesProgram, ...routesKey, ...routesUser, ...routesWidget];
 
-module.exports = [...routesProgram, ...routesRecord, ...routesKey, ...routesUser, ...routesWidget];
+module.exports = [...routesProgram, ...routesRecord, ...routesKey, ...routesUser, ...routesWidget, ...routesExport];
 // module.exports = [...routesProgram, ...routesKey, ...routesUser, ...routesWidget]; //, ...routesKeyAdmin
 
 // Error: Resource not found on the server
