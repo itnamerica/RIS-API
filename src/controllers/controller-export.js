@@ -38,7 +38,7 @@ const list = async (request, response) => {
         //     order: ['organization']
         // });
 
-        await csvWriter.writeRecords(records);
+        // await csvWriter.writeRecords(records);
 
         const filePath = '/downloads/programs.csv'; // Specify the path to your file
         response.header('Content-Disposition', 'attachment; filename="programs.csv"');
