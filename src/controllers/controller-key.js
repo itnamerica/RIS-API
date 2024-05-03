@@ -62,7 +62,7 @@ const authenticateAdmin = (request, response, done) => {
     let keyAPI = request.query["key"]; //Add API key to headers
     try {
         if (!keyAPI) {
-            console.log(`invalid key, origin: ${origin}`);
+            console.log(`invalid key, domain: ${domain}`);
             response.status(401).send('invalid key');
         } else {
             jwt.verify(keyAPI, API_SECRET_READ, (error, payload) => {
