@@ -164,7 +164,7 @@ const JS_WIDGET = `; (function (window, document) {
                     } else {
                         html +=\`</div>\`;
                     }
-                    return html;
+                    return html; 
                 },
                 'special-requirements-for-service': (program) => {
                     return (program?.special_requirements) ? program.special_requirements : '';
