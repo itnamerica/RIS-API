@@ -693,7 +693,7 @@ const JS_WIDGET = `; (function (window, document) {
                 });
     
                 zipcodes.forEach(async (zipcode) => {
-                    const response = await fetch(\`https://api.ridesinsight.org/api-data/geojson/${zipcode}.geojson\`);
+                    const response = await fetch(\`https://api.ridesinsight.org/api-data/geojson/\${zipcode}.geojson\`);
                     if (response.ok) {
                         let data = await response.json();
                         geojson.push(data);
