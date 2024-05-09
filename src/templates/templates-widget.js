@@ -624,6 +624,88 @@ const JS_WIDGET = `; (function (window, document) {
             document.head.appendChild(script);
         };
         addScript('https://api.ridesinsight.org/js/html2pdf.bundle.min.js');
+
+        //map
+        let map;
+        window.initMap = () => {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8
+            });
+
+            map.data.setStyle(feature => {
+                let label = "";
+                if (feature.getGeometry().getType() === 'Point') {
+                    label = feature.getProperty('name');
+                    return {
+                        icon: getLabelIcon(label),
+                    };
+                }
+
+                if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
+                    return {
+                        fillColor: '#336699',
+                        fillOpacity: 0.5, 
+                        strokeColor: '#336699',
+                        strokeWeight: 1,
+                        strokeOpacity: 0.75 
+                    };
+                }
+            });
+
+            map.data.addListener('addfeature', (event) => {
+                const bounds = new google.maps.LatLngBounds();
+                map.data.forEach(feature => {
+                    processPoints(feature.getGeometry(), bounds.extend, bounds);
+                    map.fitBounds(bounds);
+                });
+            });
+            const getLabelIcon = (text) => {
+                console.log('getLabelIcon ', text);
+                return {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: 'white',
+                    fillOpacity: 0,
+                    scale: 0, // To make the circle invisible
+                    strokeColor: 'white',
+                    strokeWeight: 0
+                };
+            };
+    
+            const processPoints = (geometry, callback, args) => {
+                if (geometry instanceof google.maps.LatLng) {
+                    callback.call(args, geometry);
+                } else if (geometry instanceof google.maps.Data.Point) {
+                    callback.call(args, geometry.get());
+                } else {
+                    geometry.getArray().forEach(g => {
+                        processPoints(g, callback, args);
+                    });
+                }
+            };
+    
+            let geojson = [];
+    
+            const showMap = (zipcodes) => {
+                zipcodes = zipcodes.split(',');
+                zipcodes = [...new Set(zipcodes)];
+                map.data.forEach(function (feature) {
+                    map.data.remove(feature);
+                });
+    
+                zipcodes.forEach(async (zipcode) => {
+                    const response = await fetch(\`https://api.ridesinsight.org/api-data/geojson/${zipcode}.geojson\`);
+                    if (response.ok) {
+                        let data = await response.json();
+                        geojson.push(data);
+                        map.data.addGeoJson(data);
+                    }
+                });
+    
+                let dialogMap = document.getElementById('ris-dialog-map');
+                dialogMap.showModal();
+            };
+        };
+        addScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDTv0tGMvzGCH1bbEUyA6RkjuV-3Xhxa3E&callback=initMap');
     } else {
         console.log('cannot load RIS widget');
     }
