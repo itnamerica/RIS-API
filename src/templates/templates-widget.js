@@ -571,6 +571,14 @@ const JS_WIDGET = `; (function (window, document) {
                     });
                     itemsCompare = [];
                     renderCompareItems(programs);
+                    //map
+                    let buttonsMap = listResults.querySelectorAll('button.ris-map');
+                    console.log('buttonsMap', buttonsMap);
+                    [].forEach.call(buttonsMap, (button) => {
+                        button.onclick = function () {
+                            showMap(button.dataset.zipcodes);
+                        };
+                    });
                     let buttonPrint = document.getElementById("button-print");
                     buttonPrint.onclick = () => {
                         savePDF();
@@ -617,10 +625,6 @@ const JS_WIDGET = `; (function (window, document) {
             html2pdf().set(opt).from(elementPrint).save().then(function () {
                 elementPrint.innerHTML = '';
             });
-        };
-
-        const showMap = (zipcodes) => {
-
         };
 
         const addScript = (url) => {
