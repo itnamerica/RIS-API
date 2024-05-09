@@ -204,7 +204,7 @@ const JS_WIDGET = `; (function (window, document) {
     
             let geojson = [];
     
-            const showMap = (zipcodes) => {
+            window.showMap = (zipcodes) => {
                 zipcodes = zipcodes.split(',');
                 zipcodes = [...new Set(zipcodes)];
                 map.data.forEach(function (feature) {
