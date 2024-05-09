@@ -158,7 +158,13 @@ const JS_WIDGET = `; (function (window, document) {
                     return \`<div>\${(program?.street_address && program?.street_address.toLowerCase() != 'n/a') ? program?.street_address + ', ' : ''}\${(program?.street_address_second) ? program?.street_address_second + ', ' : ''}\${program.city ? program.city + ', ' : ''}\${program.state ? program.state + ' ' : ''}\${program.zip}</div>\`;
                 },
                 'website': (program) => {
-                    return \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong></div>\`;
+                    let html = \`<div><strong>\${program.website ? '<a target="blank" href="' + program.website + '">Visit website</a>' : ''}</strong>\`;
+                    if (program.service_area_zipcodes.length>0 && program.service_area_zipcodes.length<100) {
+                        html +=\`&nbsp;&nbsp;<button class="inline ris-map" data-zipcodes="\${program.service_area_zipcodes.join(',')}">Display service area on map</button></div>\`;
+                    } else {
+                        html +=\`</div>\`;
+                    }
+                    return html;
                 },
                 'special-requirements-for-service': (program) => {
                     return (program?.special_requirements) ? program.special_requirements : '';
